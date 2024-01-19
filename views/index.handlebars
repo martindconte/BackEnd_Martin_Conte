@@ -1,0 +1,16 @@
+<h2 class="titulo">Productos Disponibles</h2>
+
+<ul class="card-container container">
+  {{#each products}}
+    <li class="card">
+      <h3>{{this.name}}</h3>
+      <p>{{this.description}}</p>
+      <p>Precio:  ${{this.price}}</p>
+      <img src={{this.thumbnails}} alt="{{this.thumbnails}}">
+      <div class="btn-container">
+        <button class="btn-accept data-id="{{this.id}}" ">COMPRAR</button>
+        <button class="btn-cart">AGREGAR AL CARRITO</button>
+      </div>
+    </li>
+  {{/each}}
+</ul>
