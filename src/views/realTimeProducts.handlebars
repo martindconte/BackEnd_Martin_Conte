@@ -1,0 +1,41 @@
+<main class="main">
+  <h2 class="titulo">Productos Disponibles desde Real Time</h2>
+
+  <ul id="card-products" class="card-container container">
+    {{#each products}}
+      <li class="card">
+        <h3>{{this.title}}</h3>
+        <p>{{this.description}}</p>
+        <p>Precio:  ${{this.price}}</p>
+        {{!-- <img src={{this.thumbnails}} alt="{{this.thumbnails}}"> --}}
+        <div class="btn-container">
+          <button class="btn-accept" data-id="btn-buy" id="buy{{this.id}}">COMPRAR</button>
+          <button class="btn-delete" data-id="btn-delete" id="delete{{this.id}}">ELIMINAR</button>
+          <button class="btn-cart">AGREGAR AL CARRITO</button>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+
+  <form id="formAddProduct" class="formProducts" action="/api/products" method="POST">
+    <p>Formulario de Creacion de Producto</p>
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" placeholder="Title" value="sadsds">
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" placeholder="Description" value="sadsds">
+    <label for="code">Code</label>
+    <input type="text" id="code" name="code" placeholder="Code" value="sadsddsds2112s">
+    <label for="stock">Stock</label>
+    <input type="number" min="0" id="stock" name="stock" placeholder="Stock" value=10>
+    <label for="stock">Price</label>
+    <input type="number" min="0" id="price" name="price" placeholder="Price" value=20>
+    <label for="category">Category</label>
+    <input type="text" id="category" name="category" placeholder="Category" value="dcfewdcerw">
+    <label for="thumbnails">Thumbnails</label>
+    <input type="file" id="thumbnails" name="thumbnails" placeholder="Thumbnails" multiple>
+    <button class="btn-accept" type="submit">Crear Producto</button>
+  </form>
+</main>
+
+<script src="/socket.io/socket.io.js" ></script>
+<script src="/js/index.js"></script>

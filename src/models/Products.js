@@ -30,8 +30,9 @@ class ProductManager {
             };
             this.products = [...data, newProduct];
             await this._writeFile(this.products)
-        } catch (err) {
-            console.log(err)
+        } catch (error) {
+            console.log(error)
+            throw error.message
         }
     }
 
@@ -40,14 +41,16 @@ class ProductManager {
         const limit = Number(quantity);
         const products = limit > 0 ? productsAll.slice(0, limit) : productsAll;
         return products
-                
-        // return await this._readFile() || [];
     }
 
     getProductsById = async (id) => {
-        const data = await this._readFile();
-        const product = data.find(prod => prod.id === id);
-        return product || `Product with id: ${id} not found`;
+        try {
+            const data = await this._readFile();
+            const product = data.find(prod => prod.id === id);
+            return product
+        } catch (error) {   
+            console.log(error)
+        }
     }
 
     updateProduct = async (id, updatedProduct) => {
@@ -61,15 +64,21 @@ class ProductManager {
             await this._writeFile(this.products);
         } catch (error) {
             console.log(error)
+            throw error.message
         }
     }
 
     deleteProduct = async (id) => {
-        const data = await this._readFile();
-        const productId = data.find(product => product.id === id);
-        if (productId === undefined) throw new Error('Product is not found');
-        this.products = data.filter(prod => prod.id !== id);
-        await this._writeFile(this.products);
+        try {
+            const data = await this._readFile();
+            const productId = data.find(product => product.id === id);
+            if (productId === undefined) throw new Error('Product is not found');
+            this.products = data.filter(prod => prod.id !== id);
+            await this._writeFile(this.products);
+        } catch (error) {
+            console.log(error)
+            throw error.message
+        }
     }
 
     _createFolderAndFile = async () => {
@@ -113,13 +122,14 @@ class ProductManager {
     }
 
     _validateData = ( title, description, code, price, status = true, stock, category, thumbnails ) => {
-        if (!title || !description || !code || !stock || !category || !status) throw new Error('Las propiedades title, description, price, code, stock y category son obligatorias');
+        const regex = /^-?\d*\.?\d+$/;
+        if (!title || !description || !code || !stock || !category || !price) throw new Error('Las propiedades title, description, price, code, stock y category son obligatorias');
         if (typeof title !== 'string') throw new Error('title debe ser un string');
         if (typeof description !== 'string') throw new Error('description debe ser un string');
         if (typeof code !== 'string') throw new Error('code debe ser un string');
-        if (typeof price !== 'number') throw new Error('price debe ser un number');
+        if (!regex.test(price)) throw new Error('price debe ser un number');
         if (typeof status !== 'boolean') throw new Error('status debe ser un boolean');
-        if (typeof stock !== 'number') throw new Error('stock debe ser un number');
+        if (!regex.test(stock)) throw new Error('stock debe ser un number');
         if (typeof category !== 'string') throw new Error('category debe ser un string');
         if (thumbnails) {
             if (!Array.isArray(thumbnails) || !thumbnails.every(path => typeof path === 'string')) {

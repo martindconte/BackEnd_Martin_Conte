@@ -1,0 +1,870 @@
+[
+    {
+        "id": "3ZFfq60B1",
+        "title": "Producto 1",
+        "description": "Descripción del producto 1",
+        "code": "dsddsadecw",
+        "price": 1200,
+        "status": true,
+        "stock": 10,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img1",
+            "/img/img2"
+        ]
+    },
+    {
+        "id": "4GhRt93C2",
+        "title": "Producto 2",
+        "description": "Descripción del producto 2",
+        "code": "sdfghe345",
+        "price": 1500,
+        "status": true,
+        "stock": 20,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img3",
+            "/img/img4"
+        ]
+    },
+    {
+        "id": "8DdFe21A3",
+        "title": "Producto 3",
+        "description": "Descripción del producto 3",
+        "code": "kjuyt567",
+        "price": 800,
+        "status": true,
+        "stock": 15,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img5",
+            "/img/img6"
+        ]
+    },
+    {
+        "id": "5LkMn44B4",
+        "title": "Producto 4",
+        "description": "Descripción del producto 4",
+        "code": "qweasd123",
+        "price": 2000,
+        "status": true,
+        "stock": 12,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img7",
+            "/img/img8"
+        ]
+    },
+    {
+        "id": "2PpOo65C5",
+        "title": "Producto 5",
+        "description": "Descripción del producto 5",
+        "code": "zxcvbnm567",
+        "price": 2500,
+        "status": true,
+        "stock": 18,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img9",
+            "/img/img10"
+        ]
+    },
+    {
+        "id": "1AaBb67E6",
+        "title": "Producto 6",
+        "description": "Descripción del producto 6",
+        "code": "mnbvcxz345",
+        "price": 1800,
+        "status": true,
+        "stock": 8,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img11",
+            "/img/img12"
+        ]
+    },
+    {
+        "id": "7GgHh45I7",
+        "title": "Producto 7",
+        "description": "Descripción del producto 7",
+        "code": "poiuytrewq",
+        "price": 3000,
+        "status": true,
+        "stock": 20,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img13",
+            "/img/img14"
+        ]
+    },
+    {
+        "id": "9BnVm23O8",
+        "title": "Producto 8",
+        "description": "Descripción del producto 8",
+        "code": "098765rdfg",
+        "price": 1600,
+        "status": true,
+        "stock": 14,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img15",
+            "/img/img16"
+        ]
+    },
+    {
+        "id": "3HhJj89P9",
+        "title": "Producto 9",
+        "description": "Descripción del producto 9",
+        "code": "qwpoer0987",
+        "price": 2200,
+        "status": true,
+        "stock": 16,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img17",
+            "/img/img18"
+        ]
+    },
+    {
+        "id": "9ZxVb12Q0",
+        "title": "Producto 10",
+        "description": "Descripción del producto 10",
+        "code": "bnmklj543",
+        "price": 1700,
+        "status": true,
+        "stock": 22,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img19",
+            "/img/img20"
+        ]
+    },
+    {
+        "id": "5QwEr56T1",
+        "title": "Producto 11",
+        "description": "Descripción del producto 11",
+        "code": "ghjkl2345",
+        "price": 1900,
+        "status": true,
+        "stock": 11,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img21",
+            "/img/img22"
+        ]
+    },
+    {
+        "id": "8VbNm78K2",
+        "title": "Producto 12",
+        "description": "Descripción del producto 12",
+        "code": "tyuiop678",
+        "price": 2100,
+        "status": true,
+        "stock": 19,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img23",
+            "/img/img24"
+        ]
+    },
+    {
+        "id": "4HjKl89P3",
+        "title": "Producto 13",
+        "description": "Descripción del producto 13",
+        "code": "zxcvbnm890",
+        "price": 2300,
+        "status": true,
+        "stock": 13,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img25",
+            "/img/img26"
+        ]
+    },
+    {
+        "id": "7ZxVb12Q4",
+        "title": "Producto 14",
+        "description": "Descripción del producto 14",
+        "code": "bnmklj876",
+        "price": 1400,
+        "status": true,
+        "stock": 23,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img27",
+            "/img/img28"
+        ]
+    },
+    {
+        "id": "1QaWs34E5",
+        "title": "Producto 15",
+        "description": "Descripción del producto 15",
+        "code": "qwertyu123",
+        "price": 2600,
+        "status": true,
+        "stock": 17,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img29",
+            "/img/img30"
+        ]
+    },
+    {
+        "id": "6KlMn44B6",
+        "title": "Producto 16",
+        "description": "Descripción del producto 16",
+        "code": "qweasd678",
+        "price": 1800,
+        "status": true,
+        "stock": 16,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img31",
+            "/img/img32"
+        ]
+    },
+    {
+        "id": "2PpOo65C7",
+        "title": "Producto 17",
+        "description": "Descripción del producto 17",
+        "code": "zxcvbnm910",
+        "price": 2900,
+        "status": true,
+        "stock": 15,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img33",
+            "/img/img34"
+        ]
+    },
+    {
+        "id": "9AaBb67E8",
+        "title": "Producto 18",
+        "description": "Descripción del producto 18",
+        "code": "mnbvcxz567",
+        "price": 2000,
+        "status": true,
+        "stock": 14,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img35",
+            "/img/img36"
+        ]
+    },
+    {
+        "id": "7GgHh45I9",
+        "title": "Producto 19",
+        "description": "Descripción del producto 19",
+        "code": "poiuytrewq",
+        "price": 3100,
+        "status": true,
+        "stock": 13,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img37",
+            "/img/img38"
+        ]
+    },
+    {
+        "id": "9BnVm23O0",
+        "title": "Producto 20",
+        "description": "Descripción del producto 20",
+        "code": "098765rdfg",
+        "price": 1700,
+        "status": true,
+        "stock": 12,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img39",
+            "/img/img40"
+        ]
+    },
+    {
+        "id": "3HhJj89P1",
+        "title": "Producto 21",
+        "description": "Descripción del producto 21",
+        "code": "qwpoer0987",
+        "price": 2400,
+        "status": true,
+        "stock": 11,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img41",
+            "/img/img42"
+        ]
+    },
+    {
+        "id": "9ZxVb12Q2",
+        "title": "Producto 22",
+        "description": "Descripción del producto 22",
+        "code": "bnmklj543",
+        "price": 1600,
+        "status": true,
+        "stock": 10,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img43",
+            "/img/img44"
+        ]
+    },
+    {
+        "id": "5QwEr56T3",
+        "title": "Producto 23",
+        "description": "Descripción del producto 23",
+        "code": "ghjkl2345",
+        "price": 2100,
+        "status": true,
+        "stock": 9,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img45",
+            "/img/img46"
+        ]
+    },
+    {
+        "id": "8VbNm78K4",
+        "title": "Producto 24",
+        "description": "Descripción del producto 24",
+        "code": "tyuiop678",
+        "price": 2200,
+        "status": true,
+        "stock": 8,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img47",
+            "/img/img48"
+        ]
+    },
+    {
+        "id": "4HjKl89P5",
+        "title": "Producto 25",
+        "description": "Descripción del producto 25",
+        "code": "zxcvbnm890",
+        "price": 1900,
+        "status": true,
+        "stock": 7,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img49",
+            "/img/img50"
+        ]
+    },
+    {
+        "id": "7ZxVb12Q6",
+        "title": "Producto 26",
+        "description": "Descripción del producto 26",
+        "code": "bnmklj876",
+        "price": 2300,
+        "status": true,
+        "stock": 6,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img51",
+            "/img/img52"
+        ]
+    },
+    {
+        "id": "1QaWs34E7",
+        "title": "Producto 27",
+        "description": "Descripción del producto 27",
+        "code": "qwertyu123",
+        "price": 2000,
+        "status": true,
+        "stock": 5,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img53",
+            "/img/img54"
+        ]
+    },
+    {
+        "id": "6KlMn44B8",
+        "title": "Producto 28",
+        "description": "Descripción del producto 28",
+        "code": "qweasd678",
+        "price": 2600,
+        "status": true,
+        "stock": 4,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img55",
+            "/img/img56"
+        ]
+    },
+    {
+        "id": "2PpOo65C9",
+        "title": "Producto 29",
+        "description": "Descripción del producto 29",
+        "code": "zxcvbnm910",
+        "price": 1800,
+        "status": true,
+        "stock": 3,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img57",
+            "/img/img58"
+        ]
+    },
+    {
+        "id": "9AaBb67E0",
+        "title": "Producto 30",
+        "description": "Descripción del producto 30",
+        "code": "mnbvcxz567",
+        "price": 2700,
+        "status": true,
+        "stock": 2,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img59",
+            "/img/img60"
+        ]
+    },
+    {
+        "id": "7GgHh45I1",
+        "title": "Producto 31",
+        "description": "Descripción del producto 31",
+        "code": "poiuytrewq",
+        "price": 1700,
+        "status": true,
+        "stock": 1,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img61",
+            "/img/img62"
+        ]
+    },
+    {
+        "id": "3ZFfq60B1",
+        "title": "Producto 1",
+        "description": "Descripción del producto 1",
+        "code": "dsddsadecw",
+        "price": 1200,
+        "status": true,
+        "stock": 10,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img1",
+            "/img/img2"
+        ]
+    },
+    {
+        "id": "4GhRt93C2",
+        "title": "Producto 2",
+        "description": "Descripción del producto 2",
+        "code": "sdfghe345",
+        "price": 1500,
+        "status": true,
+        "stock": 20,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img3",
+            "/img/img4"
+        ]
+    },
+    {
+        "id": "8DdFe21A3",
+        "title": "Producto 3",
+        "description": "Descripción del producto 3",
+        "code": "kjuyt567",
+        "price": 800,
+        "status": true,
+        "stock": 15,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img5",
+            "/img/img6"
+        ]
+    },
+    {
+        "id": "9KlMn78B4",
+        "title": "Producto 4",
+        "description": "Descripción del producto 4",
+        "code": "qwertyu12",
+        "price": 2000,
+        "status": true,
+        "stock": 8,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img7",
+            "/img/img8"
+        ]
+    },
+    {
+        "id": "2WxYz34C5",
+        "title": "Producto 5",
+        "description": "Descripción del producto 5",
+        "code": "zxcvbnm34",
+        "price": 2500,
+        "status": true,
+        "stock": 25,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img9",
+            "/img/img10"
+        ]
+    },
+    {
+        "id": "1AbCd67E6",
+        "title": "Producto 6",
+        "description": "Descripción del producto 6",
+        "code": "mnbvcxz78",
+        "price": 1800,
+        "status": true,
+        "stock": 12,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img11",
+            "/img/img12"
+        ]
+    },
+    {
+        "id": "7EfGh45I7",
+        "title": "Producto 7",
+        "description": "Descripción del producto 7",
+        "code": "poiuytrewq",
+        "price": 3000,
+        "status": true,
+        "stock": 18,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img13",
+            "/img/img14"
+        ]
+    },
+    {
+        "id": "5MnBv23O8",
+        "title": "Producto 8",
+        "description": "Descripción del producto 8",
+        "code": "098765rdfg",
+        "price": 1600,
+        "status": true,
+        "stock": 14,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img15",
+            "/img/img16"
+        ]
+    },
+    {
+        "id": "3HjKl89P9",
+        "title": "Producto 9",
+        "description": "Descripción del producto 9",
+        "code": "qwpoer0987",
+        "price": 2200,
+        "status": true,
+        "stock": 22,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img17",
+            "/img/img18"
+        ]
+    },
+    {
+        "id": "9ZxVb12Q0",
+        "title": "Producto 10",
+        "description": "Descripción del producto 10",
+        "code": "bnmklj543",
+        "price": 1700,
+        "status": true,
+        "stock": 16,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img19",
+            "/img/img20"
+        ]
+    },
+    {
+        "id": "1LmNv34P1",
+        "title": "Producto 11",
+        "description": "Descripción del producto 11",
+        "code": "tyuiop123",
+        "price": 1900,
+        "status": true,
+        "stock": 11,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img21",
+            "/img/img22"
+        ]
+    },
+    {
+        "id": "5DcVb23Q2",
+        "title": "Producto 12",
+        "description": "Descripción del producto 12",
+        "code": "qazwsx456",
+        "price": 2100,
+        "status": true,
+        "stock": 17,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img23",
+            "/img/img24"
+        ]
+    },
+    {
+        "id": "2XcVb45R3",
+        "title": "Producto 13",
+        "description": "Descripción del producto 13",
+        "code": "edcrfv789",
+        "price": 2800,
+        "status": true,
+        "stock": 19,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img25",
+            "/img/img26"
+        ]
+    },
+    {
+        "id": "8NmBv67S4",
+        "title": "Producto 14",
+        "description": "Descripción del producto 14",
+        "code": "tgbnhy234",
+        "price": 2300,
+        "status": true,
+        "stock": 13,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img27",
+            "/img/img28"
+        ]
+    },
+    {
+        "id": "6FvGb89T5",
+        "title": "Producto 15",
+        "description": "Descripción del producto 15",
+        "code": "ujmkiol12",
+        "price": 2600,
+        "status": true,
+        "stock": 21,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img29",
+            "/img/img30"
+        ]
+    },
+    {
+        "id": "7GbNh01U6",
+        "title": "Producto 16",
+        "description": "Descripción del producto 16",
+        "code": "edcftgy67",
+        "price": 2900,
+        "status": true,
+        "stock": 9,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img31",
+            "/img/img32"
+        ]
+    },
+    {
+        "id": "4RfVb23W7",
+        "title": "Producto 17",
+        "description": "Descripción del producto 17",
+        "code": "rfvtgby78",
+        "price": 2400,
+        "status": true,
+        "stock": 26,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img33",
+            "/img/img34"
+        ]
+    },
+    {
+        "id": "0OkMn78Y8",
+        "title": "Producto 18",
+        "description": "Descripción del producto 18",
+        "code": "qazwsx89",
+        "price": 2700,
+        "status": true,
+        "stock": 23,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img35",
+            "/img/img36"
+        ]
+    },
+    {
+        "id": "5TgFh90I9",
+        "title": "Producto 19",
+        "description": "Descripción del producto 19",
+        "code": "tgbnhy01",
+        "price": 3200,
+        "status": true,
+        "stock": 7,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img37",
+            "/img/img38"
+        ]
+    },
+    {
+        "id": "3VbGt23O0",
+        "title": "Producto 20",
+        "description": "Descripción del producto 20",
+        "code": "yhnbgfv23",
+        "price": 3300,
+        "status": true,
+        "stock": 24,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img39",
+            "/img/img40"
+        ]
+    },
+    {
+        "id": "1AsDf45P1",
+        "title": "Producto 21",
+        "description": "Descripción del producto 21",
+        "code": "ujmkiol34",
+        "price": 3400,
+        "status": true,
+        "stock": 28,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img41",
+            "/img/img42"
+        ]
+    },
+    {
+        "id": "6FgHj67Q2",
+        "title": "Producto 22",
+        "description": "Descripción del producto 22",
+        "code": "edcftgy45",
+        "price": 3500,
+        "status": true,
+        "stock": 30,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img43",
+            "/img/img44"
+        ]
+    },
+    {
+        "id": "4KlMn89R3",
+        "title": "Producto 23",
+        "description": "Descripción del producto 23",
+        "code": "rfvtgby56",
+        "price": 3600,
+        "status": true,
+        "stock": 11,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img45",
+            "/img/img46"
+        ]
+    },
+    {
+        "id": "2XcVb90S4",
+        "title": "Producto 24",
+        "description": "Descripción del producto 24",
+        "code": "tgbnhy78",
+        "price": 3700,
+        "status": true,
+        "stock": 16,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img47",
+            "/img/img48"
+        ]
+    },
+    {
+        "id": "8NmBv12T7",
+        "title": "Producto 25",
+        "description": "Descripción del producto 25",
+        "code": "yhnbgfv90",
+        "price": 3800,
+        "status": true,
+        "stock": 22,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img49",
+            "/img/img50"
+        ]
+    },
+    {
+        "id": "5FvGb34U8",
+        "title": "Producto 26",
+        "description": "Descripción del producto 26",
+        "code": "ujmkiol12",
+        "price": 3900,
+        "status": true,
+        "stock": 19,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img51",
+            "/img/img52"
+        ]
+    },
+    {
+        "id": "7GbNh56V9",
+        "title": "Producto 27",
+        "description": "Descripción del producto 27",
+        "code": "edcftgy34",
+        "price": 4000,
+        "status": true,
+        "stock": 14,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img53",
+            "/img/img54"
+        ]
+    },
+    {
+        "id": "4RfVb78W0",
+        "title": "Producto 28",
+        "description": "Descripción del producto 28",
+        "code": "rfvtgby90",
+        "price": 4100,
+        "status": true,
+        "stock": 17,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img55",
+            "/img/img56"
+        ]
+    },
+    {
+        "id": "0OkMn12X1",
+        "title": "Producto 29",
+        "description": "Descripción del producto 29",
+        "code": "tgbnhy56",
+        "price": 4200,
+        "status": true,
+        "stock": 25,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img57",
+            "/img/img58"
+        ]
+    },
+    {
+        "id": "5TgFh34Y2",
+        "title": "Producto 30",
+        "description": "Descripción del producto 30",
+        "code": "yhnbgfv78",
+        "price": 4300,
+        "status": true,
+        "stock": 13,
+        "category": "adios",
+        "thumbnails": [
+            "/img/img59",
+            "/img/img60"
+        ]
+    },
+    {
+        "id": "3VbGt56O3",
+        "title": "Producto 31",
+        "description": "Descripción del producto 31",
+        "code": "ujmkiol90",
+        "price": 4400,
+        "status": true,
+        "stock": 20,
+        "category": "hola",
+        "thumbnails": [
+            "/img/img61",
+            "/img/img62"
+        ]
+    }
+]

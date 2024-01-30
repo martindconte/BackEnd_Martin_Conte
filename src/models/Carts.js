@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path';
 import { generateId, readFile } from '../helpers/functions.js';
+import __dirname from '../utils.js';
 
 class CartManager {
     constructor(folderPath) {
@@ -25,19 +26,25 @@ class CartManager {
 
         } catch (error) {
             console.log(error)
+            throw error.message
         }
     }
 
     getCartById = async (id) => {
-        const data = await this._readFile();
-        const product = data.find(prod => prod.id === id);
-        return product || `Cart with id: ${id} not found`;
+        try {
+            const data = await this._readFile();
+            const cart = data.find(prod => prod.id === id);
+            return cart
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     addProductToCart = async (idCart, idProduct) => {
         try {
             const carts = await this._readFile()
-            const products = await readFile('public/data/products.json')
+            const products = await readFile( path.join(__dirname,'public/data/products.json') )
+            console.log( path.join(__dirname,'/data/products.json') )
 
             if (!carts.length || !products.length) throw new Error('No existen productos o Carritos creados. Cree un nuevo carrito o cargue productos')
 
@@ -51,8 +58,7 @@ class CartManager {
             const productExistInCart = productsIdInCart.some(product => product.id === idProduct)
 
             const newAdd = productExistInCart
-                ?
-                productsIdInCart.map(product => {
+                ? productsIdInCart.map(product => {
                     return product.id === idProduct
                         ?  {
                             ...product,
@@ -76,6 +82,7 @@ class CartManager {
             await this._writeFile(this.cart)
         } catch (error) {
             console.log(error)
+            throw error
         }
 
     }
@@ -84,8 +91,8 @@ class CartManager {
         try {
             await fs.promises.access(this.folderPath, fs.constants.F_OK,)
             await fs.promises.access(this.filePath, fs.constants.F_OK)
-        } catch (err) {
-            if (err.code === 'ENOENT') {
+        } catch (error) {
+            if (error.code === 'ENOENT') {
                 console.log('La carpeta o el archivo que contienen al carrito no existen. Creando...');
                 await fs.promises.mkdir(this.folderPath, { recursive: true });
                 await fs.promises.writeFile(this.filePath, JSON.stringify([]));
@@ -101,9 +108,9 @@ class CartManager {
         } catch (error) {
             if (error.code === 'ENOENT') {
                 console.log("No existe el archivo... O aun no fue creado");
-                return null;
+                throw error("No existe el archivo... O aun no fue creado");
             } else {
-                throw error;
+                throw error("No se accedido al archivo");;
             }
         }
     }
