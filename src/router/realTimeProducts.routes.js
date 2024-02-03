@@ -18,14 +18,4 @@ router.get('/', async ( req, res ) => {
     }
 })
 
-// router.delete('/:pid', async ( req, res ) => {
-//     try {
-//         const productId = req.params.pid
-//         await productManager.deleteProduct(productId)
-//         res.send(await productManager.getProducts())
-//     } catch (error) {
-//         console.log(error)
-//     }
-// })
-
 export default router

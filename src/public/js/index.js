@@ -7,7 +7,6 @@ cardContainer.addEventListener('click', async (e) => {
   if (e.target.getAttribute("data-id") === "btn-delete") {
     const productId = e.target.getAttribute('id').slice(6, 20);
     try {
-      console.log(productId)
       const response = await fetch(`/api/products/${productId}`,
         {
           method: 'DELETE',
