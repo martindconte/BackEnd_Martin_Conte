@@ -1,0 +1,26 @@
+<main class="mainChat">
+  <div class="listMessage">
+    <ul id="messageContainer">
+      {{#each messages}}
+      <li class="userMessage">
+        <div class="chatUser">
+          <span>Usuario:</span>
+          <span class="userMail">{{this.user}}</span>
+        </div>
+        <div class="chatMessage">
+          <p>{{this.message}}</p>
+          <p>{{this.date}}</p>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <form id="formSendMessage" class="formChat" action="/chat" method="POST">
+    <textarea type="text" name="message" placeholder="Escriba su mensaje..."></textarea>
+    <button type="submit" class="material-symbols-outlined btn-chat">send</button>
+  </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.socket.js"></script>

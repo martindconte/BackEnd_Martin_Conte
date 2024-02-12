@@ -5,8 +5,10 @@ import { Server } from 'socket.io';
 import productsRouter from './router/products.routes.js';
 import cartRouter from './router/cart.routes.js'
 import indexRouter from './router/index.routes.js'
-import realTimeProducts from './router/realTimeProducts.routes.js'
+import realTimeProductsRouter from './router/realTimeProducts.routes.js'
+import chatRouter from './router/chat.routes.js'
 import __dirname from './utils.js';
+import db from './config/db.js';
 
 // Crear la app
 const app = express();
@@ -19,16 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Template Engine
 app.set('views', __dirname + '/views')
 app.set('view engine', 'handlebars')
-app.engine('handlebars',
-    handlebars.engine({
-        defaultLayout: 'main'
-    }))
-
-// Routing
-app.use('/', indexRouter)
-app.use('/realtimeproducts', realTimeProducts)
-app.use('/api/products', productsRouter)
-app.use('/api/carts', cartRouter)
+app.engine('handlebars', handlebars.engine())
 
 // Definir un puerto y arrancar el proyecto
 const port = 8080;
@@ -36,20 +29,36 @@ const httpServer = app.listen(port, () => console.log(`Listening app port ${http
 
 // Configuracion de Web Socket
 const io = new Server(httpServer)
-io.on('connection', socket => {
-    console.log('a user has connected!')
 
+// middleware para io
+const ioMiddleware = ( req, res, next ) => {
+    req.io = io
+    next()
+}
+
+io.on('connection', socket => {
+    console.log('a user has connected! id: ', socket.id)
+
+    // socket products
     socket.on('delete-product', data => {
-        console.log('Se ha ELIMINADO el ID: ' + data.productId)
-        io.emit('update-products', data.products )
+        console.log('Se ha ELIMINADO el ID:' + data)
+        io.emit('update-products')
     })
 
-    socket.on('add-products', ({ newProduct, products }) => {
-        console.log('Se agrego el producto code: ' + newProduct.code)
-        io.emit('update-products', products )
+    socket.on('add-products', ( product ) => {
+        console.log('Desde Socket... Se agrego el producto code: ' + product.code)
+        console.log('Desde app socket... products', product.id)
+        io.emit('update-products')
     })
 
     socket.on('disconnect', () => {
-        console.log('an user has disconnected! Bye')
+        console.log('an user has disconnected! Bye id:', socket.id)
     })
 })
+
+// Routing
+app.use('/', indexRouter)
+app.use('/realtimeproducts', realTimeProductsRouter)
+app.use('/chat', ioMiddleware, chatRouter)
+app.use('/api/products', productsRouter)
+app.use('/api/carts', cartRouter)
