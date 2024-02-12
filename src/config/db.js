@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 mongoose.set('strictQuery', true)
 mongoose.set('debug', true)
 
-const db = mongoose.connect('mongodb+srv://martindconte:admin@cluster.9owkag6.mongodb.net/ecommerce',{
+const db = await mongoose.connect('mongodb+srv://martindconte:admin@cluster.9owkag6.mongodb.net/ecommerce',{
     serverSelectionTimeoutMS: 5000
 })
 
