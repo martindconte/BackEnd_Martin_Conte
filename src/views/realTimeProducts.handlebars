@@ -9,8 +9,8 @@
         <p>Precio:  ${{this.price}}</p>
         {{!-- <img src={{this.thumbnails}} alt="{{this.thumbnails}}"> --}}
         <div class="btn-container">
-          <button class="btn-accept" data-id="btn-buy" id="buy{{this.id}}">COMPRAR</button>
-          <button class="btn-delete" data-id="btn-delete" id="delete{{this.id}}">ELIMINAR</button>
+          <button class="btn-accept" data-id="btn-buy" id="buy{{this._id}}">COMPRAR</button>
+          <button class="btn-delete" data-id="btn-delete" id="delete{{this._id}}">ELIMINAR</button>
           <button class="btn-cart">AGREGAR AL CARRITO</button>
         </div>
       </li>
@@ -38,4 +38,4 @@
 </main>
 
 <script src="/socket.io/socket.io.js" ></script>
-<script src="/js/index.js"></script>
+<script src="/js/products.socket.js"></script>
