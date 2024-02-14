@@ -6,7 +6,7 @@ const getProducts = async (req, res) => {
 
         const filter = query ? {
             $and: [
-                { category: query.toLowerCase() },
+                { category: { $regex: new RegExp(query, 'i') } },
                 { stock: { $gt: 0 }
             },
             ],
