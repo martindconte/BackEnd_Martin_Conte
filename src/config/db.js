@@ -9,6 +9,9 @@ const db = await mongoose.connect('mongodb+srv://martindconte:admin@cluster.9owk
 
 mongoose.connection.on('connected', () => console.log('Mongoose connected to MongoDB'))
 
-mongoose.connection.on('error', (error) => console.error('Mongoose connection error:', error))
+mongoose.connection.on('error', (error) => {
+    console.error('Mongoose connection error:', error)
+    process.exit(1)
+})
 
 export default db

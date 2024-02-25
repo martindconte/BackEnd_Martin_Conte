@@ -1,0 +1,20 @@
+<main class="main">
+  <h2 class="titulo">Productos Disponibles</h2>
+
+  <ul id="card-products" class="card-container container">
+    {{#each products}}
+    <li class="card">
+      <h3>{{this.title}}</h3>
+      <p>{{this.description}}</p>
+      <p>Precio: ${{this.price}}</p>
+      {{!-- <img src={{this.thumbnails}} alt="{{this.thumbnails}}"> --}}
+      <div class="btn-container">
+        <a class="btn-accept" data-id="btn-buy" href="/products/{{this._id}}">COMPRAR</a>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+  <ul class="numberPage">
+    {{{generatePageLink pages queryParameters}}}
+  </ul>
+</main>

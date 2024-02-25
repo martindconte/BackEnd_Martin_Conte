@@ -35,7 +35,7 @@ formSendMessage.onsubmit = async (e) => {
   });
 
   newMessage.user = user
-  console.log(newMessage)
+
   try {
     const response = await fetch('/chat', {
       method: 'POST',
@@ -57,7 +57,7 @@ formSendMessage.onsubmit = async (e) => {
 
 socket.on('new message', messages => {
   console.log('Desde clientee eescuchando...', messages)
-  messageContainer.innerHTML = ''
+  if(user) messageContainer.innerHTML = ''
   messages.forEach(message => {
     
     const dateMongoose = message.date

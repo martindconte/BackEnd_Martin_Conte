@@ -3,10 +3,12 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import { Server } from 'socket.io';
 import productsRouter from './router/products.routes.js';
+import productsViewsRouter from './router/products.views.routes.js'
 import cartRouter from './router/cart.routes.js'
-import indexRouter from './router/index.routes.js'
+import cartViewsRouter from './router/cart.views.routes.js'
 import realTimeProductsRouter from './router/realTimeProducts.routes.js'
 import chatRouter from './router/chat.routes.js'
+import { helpersHbs } from './helpers/helper.handlebars.js';
 import __dirname from './utils.js';
 import db from './config/db.js';
 
@@ -19,9 +21,11 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Template Engine
-app.set('views', __dirname + '/views')
+app.engine('handlebars', handlebars.engine({
+    helpers: helpersHbs
+}))
+app.set('views', `${__dirname}/views`)
 app.set('view engine', 'handlebars')
-app.engine('handlebars', handlebars.engine())
 
 // Definir un puerto y arrancar el proyecto
 const port = 8080;
@@ -46,8 +50,9 @@ io.on('connection', socket => {
     })
 
     socket.on('add-products', ( product ) => {
+        console.log('Desde App... Add-products', product)
         console.log('Desde Socket... Se agrego el producto code: ' + product.code)
-        console.log('Desde app socket... products', product.id)
+        console.log('Desde app socket... products', product._id)
         io.emit('update-products')
     })
 
@@ -57,8 +62,9 @@ io.on('connection', socket => {
 })
 
 // Routing
-app.use('/', indexRouter)
-app.use('/realtimeproducts', realTimeProductsRouter)
-app.use('/chat', ioMiddleware, chatRouter)
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)
+app.use('/realtimeproducts', realTimeProductsRouter)
+app.use('/chat', ioMiddleware, chatRouter)
+app.use('/products', productsViewsRouter)
+app.use('/cart', cartViewsRouter)
