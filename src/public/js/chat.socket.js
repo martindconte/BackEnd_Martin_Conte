@@ -23,7 +23,7 @@ getEmail()
   .then(email => user = email)
   .catch(err => console.error(err))
 
-formSendMessage.onsubmit = async (e) => {
+async function sendMessage(e) {
 
   e.preventDefault()
 
@@ -48,7 +48,6 @@ formSendMessage.onsubmit = async (e) => {
     if (!response.ok) throw new Error(`Response: ${response.status}`)
     
     formSendMessage.reset()
-    // console.log('Desde chat.socket.js se agrego el mensaje: ', newMessage)
 
   } catch (error) {
     console.log(error.message)
@@ -78,4 +77,11 @@ socket.on('new message', messages => {
     </div>
   </li>`
   })
+})
+
+formSendMessage.addEventListener('submit', sendMessage)
+formSendMessage.addEventListener('keyup', e => {
+  if(e.key === 'Enter'){
+    sendMessage(e)
+  }
 })

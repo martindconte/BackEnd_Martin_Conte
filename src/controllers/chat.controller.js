@@ -35,7 +35,6 @@ const newMessage = async (req, res, next) => {
         const messages = await chatModel.find()
 
         io.emit("new message", messages);
-        // console.log('despuess de emit...', messages)
         next()
 
         res.status(200).send({ message: "Mensaje creado correctamente" });

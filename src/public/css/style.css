@@ -267,6 +267,7 @@ footer {
 }
 
 .formChat textarea {
+    height: 50px;
     flex-grow: 1;
     resize: none;
     font-family: var(--font-secondary);
