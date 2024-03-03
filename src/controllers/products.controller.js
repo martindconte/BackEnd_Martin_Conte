@@ -148,7 +148,6 @@ const addProducts = async (req, res) => {
         console.log('Desde addProducts', newProduct)
         res.send(newProduct)
     } catch (error) {
-        console.log('Desde controller addproduct', error.message)
         res.status(500).send(error.message);
     }
 }
