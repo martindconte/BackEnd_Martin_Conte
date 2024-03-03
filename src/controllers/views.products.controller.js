@@ -8,10 +8,13 @@ const renderProducts = async (req, res, next) => {
 
         const filter = query ? {
             $and: [
+              { $or: [
                 { category: { $regex: new RegExp(query, 'i') } },
-                { stock: { $gt: 0 } },
+                { description: { $regex: new RegExp(query, 'i') } },
+              ]},
+              { stock: { $gt: 0 } },
             ],
-        } : {}
+          } : { stock: { $gt: 0 } };
 
         const options = {
             limit: isNaN(parseInt(limit)) ? 10 : parseInt(limit),
@@ -46,7 +49,8 @@ const renderProducts = async (req, res, next) => {
             layout: 'main',
             products: productsData,
             pages,
-            queryParameters
+            queryParameters,
+            user: {email: req.session.username}
         })
 
     } catch (error) {

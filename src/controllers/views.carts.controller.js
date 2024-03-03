@@ -8,9 +8,10 @@ const renderCartById = async ( req, res ) => {
             pageName: 'Cart',
             layout: 'main',
             cart,
+            user: {email: req.session.username}
         })
     } catch (error) {
-        console.error(error.message)
+        console.error(error)
         res.status(500).send({ error: 'Internal server error... Could not retrieve shopping cart data.' })
     }
 }

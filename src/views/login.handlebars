@@ -18,6 +18,11 @@
     <main class="mainLogin">
         <h1>Inicio de sesión</h1>
         <div class="contenedorLogin">
+            {{#if msg.length}}
+                {{#each msg}}
+                    <p class="error">{{this}}</p>
+                {{/each}}
+            {{/if}}
             <form action="/api/sessions/login" method="post">
                 <div class="labelForm">
                     <label for="email">E-Mail:</label>

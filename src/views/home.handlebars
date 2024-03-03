@@ -1,0 +1,32 @@
+<main class="mainProfile">
+    <h2 class="titulo">Perfil del Usuario</h2>
+    <div class="userProfile">
+        <form class="formProfile" action="" method="post">
+            <div class="formProfileInput">
+                <div class="labelForm">
+                    <label for="first_name">Nombre:</label>
+                    <input type="text" id="first_name" name="first_name" value="{{user.first_name}}" readonly>
+                </div>
+                <div class="labelForm">
+                    <label for="last_name">Apellido:</label>
+                    <input type="text" id="last_name" name="last_name" value="{{user.last_name}}" readonly>
+                </div>
+                <div class="labelForm">
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" name="age" min="1" value="{{user.age}}" readonly>
+                </div>
+                <div class="labelForm">
+                    <label for="username">E-Mail:</label>
+                    <input type="email" id="email" name="email" value="{{user.email}}" readonly>
+                </div>
+            </div>
+            <div class="formProfileBtn">
+                <button class="btn-modify" type="submit">Editar Password</button>
+                <button class="btn-accept" type="submit">Editar Datos</button>
+            </div>
+        </form>
+        <form action="/api/sessions/logout" method="post" class="formProfileBtn">
+            <button class="btn-delete" type="submit">Cerrar Session</button>
+        </form>
+    </div>
+</main>

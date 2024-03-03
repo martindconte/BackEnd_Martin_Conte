@@ -5,13 +5,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: 'fist name is required',
         trim: true,
-        lowercase: true,
     },
     last_name: {
         type: String,
         required: 'last name is required',
         trim: true,
-        lowercase: true,
     },
     email: {
         type: String,

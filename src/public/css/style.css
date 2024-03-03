@@ -12,6 +12,8 @@
 
 html,
 body {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -52,6 +54,15 @@ input:focus {
     --font-size-s: 14px;
     --font-size-xs: 12px;
     --text-color-primary: white;
+}
+
+.error {
+    background-color: red;
+    color: white;
+    padding: 5px 20px;
+    margin: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
 }
 
 .container {
@@ -96,6 +107,18 @@ input:focus {
 .header li {
     color: var(--text-color-primary);
 }
+
+.header .info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header .infoUser {
+    display: flex;
+    flex-direction: column;
+}
+
 
 footer {
     height: 5%;
@@ -238,6 +261,22 @@ footer {
 .btn-delete:hover {
     background-color: #ff6363;
     color: black;
+}
+
+.btn-modify {
+    padding: 5px;
+    font-family: var(--font-btn);
+    background-color: #7990f7;
+    /* font-weight: bold; */
+    border-radius: .25rem;
+    color: black;
+    cursor: pointer;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+.btn-modify:hover {
+    background-color: #1a2b75;
+    color: white;
 }
 
 .formProducts {
@@ -622,6 +661,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 20px;
 }
 
 .contenedorLogin form button {
@@ -651,4 +691,62 @@ footer {
 
 .linkLogin a:hover{
     font-weight: 800;
+}
+
+/* Page Home */
+
+.mainProfile {
+    position: relative;
+    padding: 10px;
+    background-color: #252525;
+    flex: 1;
+}
+
+.userProfile {
+    display: inline-flex;
+    background-color: #3a3a3a;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-m);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid white ;
+    margin: 20px auto;
+    gap: 15px;
+}
+
+.formProfile {
+    display: flex;
+    align-items: center;
+}
+.userProfile form {
+    flex-grow: 1;
+}
+
+.userProfile form label {
+    color: white;
+}
+
+.userProfile form input {
+    background-color: transparent;
+    font-size: var(--font-size-m);
+    color: white;
+    border: none;
+    width: 75%;
+}
+
+.formProfileInput {
+    width: 350px;
+}
+
+.formProfileBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.formProfileBtn button{
+    font-family: var(--font-primary);
+    font-size: var(--font-size-m);
+    color: black;
 }

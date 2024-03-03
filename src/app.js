@@ -5,6 +5,7 @@ import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import { checkLogged } from './middlewares/auth.js';
 import productsRouter from './router/products.routes.js';
 import cartRouter from './router/cart.routes.js'
 import sessionRouter from './router/sessions.routes.js'
@@ -14,8 +15,8 @@ import authViewsRouter from './router/auth.views.routes.js'
 import realTimeProductsRouter from './router/realTimeProducts.routes.js'
 import chatRouter from './router/chat.routes.js'
 import { helpersHbs } from './helpers/helper.handlebars.js';
-import __dirname from './utils.js';
 import { MONGO_URI } from './config/db.js';
+import __dirname from './utils.js';
 
 // Crear la app
 const app = express();
@@ -27,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Template Engine
 app.engine('handlebars', handlebars.engine({
-    helpers: helpersHbs
+    helpers: helpersHbs,
 }))
 app.set('views', `${__dirname}/views`)
 app.set('view engine', 'handlebars')
@@ -77,12 +78,17 @@ io.on('connection', socket => {
     })
 })
 
+// authentication routes
+app.use('/', authViewsRouter)
+app.use('/api/sessions', sessionRouter)
+
+// route validation
+app.use(checkLogged)
+
 // Routing
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)
-app.use('/api/sessions', sessionRouter)
 app.use('/realtimeproducts', realTimeProductsRouter)
 app.use('/chat', ioMiddleware, chatRouter)
 app.use('/products', productsViewsRouter)
 app.use('/cart', cartViewsRouter)
-app.use('/', authViewsRouter)
