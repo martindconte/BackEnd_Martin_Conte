@@ -18,32 +18,3 @@ class Carts {
 const cartService = new Carts()
 
 export default cartService
-
-// import mongoose from "mongoose";
-
-// const cartSchema = new mongoose.Schema({
-//     products: {
-//         type: [{
-//                 product: {
-//                     type: mongoose.Schema.Types.ObjectId,
-//                     ref: 'products'
-//                 },
-//                 quantity: {
-//                     type: Number,
-//                     min: 0
-//                 }
-//             }],
-//         default: []
-//     }
-// })
-
-// cartSchema.pre('findOne', function (next) {
-//     this.populate('products.product')
-//     next()
-// })
-// cartSchema.pre('find', function (next) {
-//     this.populate('products.product')
-//     next()
-// })
-
-// export const cartModel = mongoose.model('carts', cartSchema)

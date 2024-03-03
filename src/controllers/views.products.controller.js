@@ -8,10 +8,13 @@ const renderProducts = async (req, res, next) => {
 
         const filter = query ? {
             $and: [
+              { $or: [ 
                 { category: { $regex: new RegExp(query, 'i') } },
-                { stock: { $gt: 0 } },
+                { description: { $regex: new RegExp(query, 'i') } },
+              ]},
+              { stock: { $gt: 0 } }, // Mantener filtro de stock
             ],
-        } : {}
+          } : {};
 
         const options = {
             limit: isNaN(parseInt(limit)) ? 10 : parseInt(limit),
