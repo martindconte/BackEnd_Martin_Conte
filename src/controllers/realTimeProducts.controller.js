@@ -10,7 +10,8 @@ const getProductsRealTime = async (req, res, next) => {
         res.render('realTimeProducts', {
             pageName: 'Real Time',
             layout: 'main',
-            products
+            products,
+            user: {email: req.session.username}
         })
     } catch (error) {
         console.log(error.message)

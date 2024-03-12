@@ -1,5 +1,7 @@
 # Proyecto BackEnd Comision #58195 Coderhouse
 
+## PENDIENTE DE EDICION
+
 ## Scrips
 
 ### Desarollo
@@ -17,3 +19,4 @@ npm start
 ### Consideraciones de Entrega
 Los archivos generados para guarda la informacion de productos y carrito se crearan en la ruta
 > public/data
+

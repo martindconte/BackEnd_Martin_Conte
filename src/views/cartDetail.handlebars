@@ -4,6 +4,7 @@
         {{#if cart.products.length}}
         <ul class="cart-container" >
             {{#each cart.products}}
+            {{#if this.product._id}}
             <li class="cartItem">
                 <div class="cartItemImg">
                     <p>Imagen</p>
@@ -21,6 +22,7 @@
                     <a class="material-symbols-outlined" data-itemDelete={{this.product._id}}>delete</a>
                 </div>
             </li>
+            {{/if}}
             {{/each}}
         </ul>
         <div class="cartBtn" id="cartAction">

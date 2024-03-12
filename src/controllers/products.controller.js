@@ -8,16 +8,13 @@ const getProducts = async (req, res) => {
 
         const filter = query ? {
             $and: [
-              { $or: [ 
+              { $or: [
                 { category: { $regex: new RegExp(query, 'i') } },
                 { description: { $regex: new RegExp(query, 'i') } },
               ]},
-              { stock: { $gt: 0 } }, // Mantener filtro de stock
+              { stock: { $gt: 0 } },
             ],
           } : {};
-
-          const prueba = await productService.get( filter )
-          console.log('prueba', prueba)
 
         const options = {
             limit: isNaN(parseInt(limit)) ? 10 : parseInt(limit),
@@ -73,7 +70,6 @@ const addProducts = async (req, res) => {
         console.log('Desde addProducts', newProduct)
         res.send(newProduct)
     } catch (error) {
-        console.log('Desde controller addproduct', error.message)
         res.status(500).send(error.message);
     }
 }

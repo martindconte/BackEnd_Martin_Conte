@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;700&family=Rubik:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <main class="mainLogin">
+        <h1>Inicio de sesión</h1>
+        <div class="contenedorLogin">
+            {{#if msg.length}}
+                {{#each msg}}
+                    <p class="error">{{this}}</p>
+                {{/each}}
+            {{/if}}
+            <form action="/api/sessions/login" method="post">
+                <div class="labelForm">
+                    <label for="email">E-Mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="labelForm">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button class="btn-accept" type="submit">Iniciar sesión</button>
+            </form>
+            <div class="linkLogin">
+                <a href="/register">No tienes cuenta? Crear</a>
+                <a href="">Olvide mi Contraseña</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
