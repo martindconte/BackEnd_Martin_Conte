@@ -1,0 +1,22 @@
+<main class="main">
+    <h2 class="titulo">{{product.title}}</h2>
+    <div class="productDetail">
+        <div class="productImage">Imagen</div>
+        <div class="productDescription">
+            <h3>{{product.description}}</h3>
+            <p>Descripcion del Producto</p>
+        </div>
+        <div class="productPrice">
+            <p>Precio: $ <span>{{formatCurrency product.price}}</span></p>
+            <p>Stock: {{product.stock}} Disponibles</p>
+            <div class="productQuantity">
+                <span>Cantidad: </span>
+                <input type="number" min=1 inputmode="numeric" name="quantity" />
+            </div>
+        <div class="productBtn">
+            <button class="btn-cart">Agregar al Carrito</button>
+            <button class="btn-accept">Comprar</button>
+        </div>
+        </div>
+    </div>
+</main>

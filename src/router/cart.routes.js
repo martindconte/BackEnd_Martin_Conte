@@ -1,15 +1,20 @@
 import express from "express"
-import { addProductsToCart, createNewCart, getCartById } from "../controllers/carts.controller.js"
+import { addProductsToCart, createNewCart, deleteAllProductsInCart, deleteProductInCart, getAllCarts, getCartById, updateProductsInCart, updateQuantity } from "../controllers/carts.controller.js"
 
 const router = express.Router()
 
-router.get('/', (req, resp) => {
-    resp.send('<h1 style="color: red">Servidor Express /// Desde Cart</h1>')
-})
-router.post( '/', createNewCart )
+router.route( '/' )
+    .get( getAllCarts )
+    .post( createNewCart )
 
-router.get('/:cid', getCartById )
+router.route( '/:cid' )
+    .get( getCartById )
+    .put( updateProductsInCart )
+    .delete( deleteAllProductsInCart )
 
-router.post('/:cid/product/:pid', addProductsToCart)
+router.route( '/:cid/product/:pid' )
+    .post( addProductsToCart )
+    .put( updateQuantity )
+    .delete( deleteProductInCart )
 
 export default router

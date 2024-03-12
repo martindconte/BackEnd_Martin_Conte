@@ -1,17 +1,15 @@
-import { chatModel } from "../dao/models/chat.models.js"
+import chatService from "../dao/chat.models.js";
 
 const getChat = async (req, res, next) => {
     try {
-        const messages = await chatModel.find()
+        const messages = await chatService.get().lean()
 
         if (!messages) return next()
-
-        const plainMessages = messages.map(msg => msg.toObject());
 
         res.render('chat', {
             pageName: 'Chat',
             layout: 'main',
-            messages: plainMessages
+            messages
         })
         console.log('Imprimiendo...')
     } catch (error) {
@@ -28,11 +26,11 @@ const newMessage = async (req, res, next) => {
 
         if (!io) return res.status(400).send({ error: "La instancia 'io' no está disponible" });
 
-        const newMessage = await chatModel.create(req.body);
+        const newMessage = await chatService.create(req.body);
 
         if (!newMessage) return next();
 
-        const messages = await chatModel.find()
+        const messages = await chatService.get()
 
         io.emit("new message", messages);
         next()

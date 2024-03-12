@@ -35,7 +35,7 @@ async function sendMessage(e) {
   });
 
   newMessage.user = user
-  console.log(newMessage)
+
   try {
     const response = await fetch('/chat', {
       method: 'POST',
@@ -56,7 +56,7 @@ async function sendMessage(e) {
 
 socket.on('new message', messages => {
   console.log('Desde clientee eescuchando...', messages)
-  messageContainer.innerHTML = ''
+  if(user) messageContainer.innerHTML = ''
   messages.forEach(message => {
     
     const dateMongoose = message.date

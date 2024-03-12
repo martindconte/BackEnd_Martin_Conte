@@ -1,17 +1,16 @@
-import { productsModel } from "../dao/models/products.models.js"
+import productService from "../dao/products.models.js"
 
 const getProductsRealTime = async (req, res, next) => {
     try {
-        const products  = await productsModel.find().limit(req.query.limit)
+
+        const products  = await productService.get().lean()
 
         if(!products) return next()
-
-        const plainProducts = products.map(product => product.toObject());
 
         res.render('realTimeProducts', {
             pageName: 'Real Time',
             layout: 'main',
-            products: plainProducts
+            products
         })
     } catch (error) {
         console.log(error.message)

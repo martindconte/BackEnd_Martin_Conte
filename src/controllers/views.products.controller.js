@@ -1,6 +1,6 @@
-import productService from "../dao/products.models.js";
+import productService from "../dao/products.models.js"
 
-const getProducts = async (req, res) => {
+const renderProducts = async (req, res, next) => {
 
     try {
 
@@ -15,9 +15,6 @@ const getProducts = async (req, res) => {
               { stock: { $gt: 0 } }, // Mantener filtro de stock
             ],
           } : {};
-
-          const prueba = await productService.get( filter )
-          console.log('prueba', prueba)
 
         const options = {
             limit: isNaN(parseInt(limit)) ? 10 : parseInt(limit),
@@ -45,7 +42,15 @@ const getProducts = async (req, res) => {
             nextLink: products.hasNextPage ? `/api/products?page=${products.nextPage}&${new URLSearchParams(queryParameters)}` : null
         };
 
-        res.send(paginateData)
+        const productsData = paginateData.payload.map(product => product.toObject())
+        const pages = Array.from({ length: paginateData.totalPages }, (v, i) => i + 1);
+        res.render('products', {
+            pageName: 'Productos Disponibles',
+            layout: 'main',
+            products: productsData,
+            pages,
+            queryParameters
+        })
 
     } catch (error) {
         console.log(error)
@@ -53,72 +58,24 @@ const getProducts = async (req, res) => {
     }
 }
 
-const getProductById = async (req, res) => {
+const renderProductsById = async (req, res, next) => {
 
     const { pid } = req.params
 
     try {
-        const product = await productService.getById( pid ).lean()
+        const product = await productService.getById(pid).lean()
         if (!product) return res.status(404).send({ error: `Product id: ${pid} not found` })
-            res.send(product)
+        res.render('productDetail', {
+            pageName: product.title,
+            product
+        })
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: 'Internal server error' });
     }
 }
 
-const addProducts = async (req, res) => {
-    try {
-        const newProduct = await productService.create(req.body)
-        console.log('Desde addProducts', newProduct)
-        res.send(newProduct)
-    } catch (error) {
-        console.log('Desde controller addproduct', error.message)
-        res.status(500).send(error.message);
-    }
-}
-
-const updatedProduct = async (req, res) => {
-
-    const { pid } = req.params
-
-    try {
-
-        const product = await productService.updateById(
-            pid,
-            { ...req.body },
-            { new: true }
-        )
-        res.send(product)
-    } catch (error) {
-        console.log(error)
-        res.status(404).send({ error });
-    }
-}
-
-const deleteProduct = async (req, res) => {
-
-    const { pid } = req.params
-
-    try {
-        const result = await productService.deleteById( pid )
-        result.deletedCount > 0
-            ? res.status(200).send({ message: `Product id: ${req.params.pid} was successfully deleted` })
-            : res.status(404).send({
-                error: {
-                    message: `Product id: ${req.params.pid} not found!`
-                }
-            })
-    } catch (error) {
-        console.log(error.message)
-        res.status(404).send({ error });
-    }
-}
-
 export {
-    getProducts,
-    getProductById,
-    addProducts,
-    updatedProduct,
-    deleteProduct
+    renderProducts,
+    renderProductsById
 }
