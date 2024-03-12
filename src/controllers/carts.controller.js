@@ -84,13 +84,14 @@ const addProductsToCart = async (req, res) => {
 
         console.log('cart', cart)
         console.log('product', product)
+        console.log(cart.products)
 
         if (!cart || !product) res.status(404).send({ error: 'There are no products or carts created with those ids. Create a new cart or verify the id' })
 
-        const productExist = cart.products.some(item => item.product.equals(pid))
+        const productExist = cart.products.some(item => item.product && item.product.equals(pid))
 
         if (productExist) {
-            const cartProductIndex = cart.products.findIndex(item => item.product.equals(pid))
+            const cartProductIndex = cart.products.findIndex(item => item.product && item.product.equals(pid))
             cart.products[cartProductIndex].quantity++
         } else {
             cart.products.push({
@@ -256,7 +257,7 @@ const deleteProductInCart = async (req, res) => {
 
         if (!cart) res.status(404).json({ error: 'Cart not found...' })
 
-        const productIndex = cart.products.findIndex(item => item.product.equals(pid))
+        const productIndex = cart.products.findIndex(item => item.product && item.product.equals(pid))
         if (productIndex === -1) return res.status(404).json({ error: 'Product  not found in Cart!' })
         cart.products.splice(productIndex, 1)
 

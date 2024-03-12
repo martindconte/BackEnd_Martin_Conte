@@ -4,6 +4,7 @@ const renderCartById = async ( req, res ) => {
     try {
         const { cid } = req.params
         const cart = await cartService.getById(cid).lean()
+        console.log(JSON.stringify(cart))
         res.render('cartDetail', {
             pageName: 'Cart',
             layout: 'main',

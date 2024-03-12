@@ -40,8 +40,8 @@ app.use(session({
         mongoUrl: MONGO_URI,
     }),
     secret: "secret",
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
 }))
 
 // Definir un puerto y arrancar el proyecto

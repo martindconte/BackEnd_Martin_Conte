@@ -45,9 +45,12 @@ export const helpersHbs = {
   subTotalPrice: (quantity, price) => quantity * price,
 
   totalPrice: (products) => {
+    console.log(products)
     let total = 0
     products.forEach(item => {
-      total += item.quantity * item.product.price
+      if( item.product ) {
+        total += item.quantity * item.product.price
+      }
     }) 
     return total
   }
