@@ -48,8 +48,7 @@ formSendMessage.onsubmit = async (e) => {
     if (!response.ok) throw new Error(`Response: ${response.status}`)
     
     formSendMessage.reset()
-    // console.log('Desde chat.socket.js se agrego el mensaje: ', newMessage)
-
+    
   } catch (error) {
     console.log(error.message)
   }

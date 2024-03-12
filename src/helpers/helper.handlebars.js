@@ -1,25 +1,4 @@
 export const helpersHbs = {
-  // generatePageLink: (pages, queryParameters) => {
-
-  //   let li = ''
-  //   let query = ''
-
-  //   Object.entries(queryParameters).forEach(([key, value]) => {
-  //     query += `${key}=${value}&`
-  //   })
-
-  //   pages.forEach(page => {
-  //     let aux = `/products?page=${page}&${query}`
-  //     if (aux.endsWith('&')) aux = aux.slice(0, -1)
-  //     console.log(aux)
-
-  //     return li += `
-  //       <li><a href=${aux}>${page}</a></li>
-  //     `
-  //   });
-
-  //   return li
-  // }
 
   generatePageLink: (pages, queryParameters) => {
     const urlParams = new URLSearchParams(queryParameters);

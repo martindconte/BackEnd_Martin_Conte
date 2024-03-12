@@ -46,20 +46,11 @@ const createUser = async (req, res, next) => {
         await userService.create(req.body)
         res.redirect('/login')
     } catch (error) {
-        // console.log(error)
         if (error.name === 'MongoServerError' && error.code === 11000) {
             msg.push('Email ya registrado')
-            // res.render('registerNewUser', {
-            //     layout: false,
-            //     msg
-            // })
             res.redirect(`/register?errorMessages=${JSON.stringify(msg)}`)
         } else {
             msg.push('Revisa la informacion ingresada. Recuerda... TODOS los campos son obligatorios')
-            // res.render('registerNewUser', {
-            //     layout: false,
-            //     msg
-            // })
             res.redirect(`/register?errorMessages=${JSON.stringify(msg)}`)
         }
     }
