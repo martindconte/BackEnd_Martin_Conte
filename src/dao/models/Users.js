@@ -28,8 +28,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: 'Password is required',
-        trim: true,
-        lowercase: true,
+        trim: true
     },
     role: {
         type: String,
@@ -42,7 +41,7 @@ userSchema.pre('save', async function(next) {
     if(!this.isModified('password')) next()
     
     console.log(this.password)
-    const salt = await bcrypt.genSalt( 10 )
+    const salt = await bcrypt.genSalt(10)
     this.password = await bcrypt.hash(this.password, salt)
     console.log(this.password)
 
@@ -50,9 +49,7 @@ userSchema.pre('save', async function(next) {
 })
 
 userSchema.methods.checkPassword = async function(pass) {
-    const isValid = await bcrypt.compare(pass, this.password)
-    console.log(isValid)
-    return isValid
+    return await bcrypt.compare(pass, this.password)
 }
 
 // userSchema.pre('save', function( next ) {

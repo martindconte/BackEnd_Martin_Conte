@@ -1,9 +1,8 @@
 import userService from "../dao/users.models.js";
-import { createHash, isValidPassword } from "../helpers/hash.js";
 
 const singIn = async (req, res) => {
     
-    console.log(req.body)
+    console.log('jojo', req.body)
 
     const msg = []
 
@@ -36,8 +35,8 @@ const singIn = async (req, res) => {
         //     res.redirect(`/login?errorMessages=${JSON.stringify(msg)}`)
         // 
         // console.log('password desde form', password)
-        // const passwordCheck = await user.checkPassword(password)
-        const passwordCheck = isValidPassword(user, password)
+        const passwordCheck = await user.checkPassword(password)
+        // const passwordCheck = isValidPassword(user, password)
         console.log(passwordCheck)
         console.log(user.password)
 
