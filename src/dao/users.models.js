@@ -8,6 +8,11 @@ class User {
 
     create = ( doc ) => userModel.create( doc )
 
+    //? prueba
+    save = () => userModel.save()
+
+    //? prueba
+    createUserInstance = ( data ) => new userModel( data )
 }
 
 const userService = new User()
