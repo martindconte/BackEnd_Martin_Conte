@@ -656,6 +656,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 5px;
 }
 
 .contenedorLogin form {
@@ -694,6 +695,32 @@ footer {
     font-weight: 800;
 }
 
+.githubLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 100px;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.githubLogin:hover {
+    background-color: white;
+    color: black;
+}
+
+.githubLogin:hover .fa-github {
+    color: black;
+}
+
+.githubLogin button {
+    color: white;
+    font-size: var(--font-size-m);
+}
+.githubLogin:hover button {
+    color: black
+}
 /* Page Home */
 
 .mainProfile {

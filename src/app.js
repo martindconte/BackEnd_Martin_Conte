@@ -16,7 +16,9 @@ import realTimeProductsRouter from './router/realTimeProducts.routes.js'
 import chatRouter from './router/chat.routes.js'
 import { helpersHbs } from './helpers/helper.handlebars.js';
 import { MONGO_URI } from './config/db.js';
+import passport from 'passport';
 import __dirname from './utils.js';
+import initializePassport from './config/passport.config.js';
 
 // Crear la app
 const app = express();
@@ -32,6 +34,9 @@ app.engine('handlebars', handlebars.engine({
 }))
 app.set('views', `${__dirname}/views`)
 app.set('view engine', 'handlebars')
+
+// passport
+initializePassport()
 
 // session configuration
 app.use(cookieParser())
@@ -78,12 +83,14 @@ io.on('connection', socket => {
     })
 })
 
+app.use(passport.initialize())
+
 // authentication routes
 app.use('/', authViewsRouter)
 app.use('/api/sessions', sessionRouter)
-
 // route validation
 app.use(checkLogged)
+
 
 // Routing
 app.use('/api/products', productsRouter)

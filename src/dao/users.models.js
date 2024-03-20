@@ -3,16 +3,12 @@ import { userModel } from "./models/Users.js"
 class User {
 
     get = ( params ) => userModel.find( params )
+
+    getOne = ( params ) => userModel.findOne( params )
     
     getByEmail = ( email ) => userModel.findOne({ email })
 
     create = ( doc ) => userModel.create( doc )
-
-    //? prueba
-    save = () => userModel.save()
-
-    //? prueba
-    createUserInstance = ( data ) => new userModel( data )
 }
 
 const userService = new User()

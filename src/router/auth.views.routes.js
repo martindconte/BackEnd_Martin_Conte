@@ -1,9 +1,10 @@
 import express from "express"
 import userService from "../dao/users.models.js"
+import { userNotLogged } from "../middlewares/auth.js"
 
 const router = express.Router()
 
-router.get('/login', (req, res) => {
+router.get('/login', userNotLogged, (req, res) => {
 
     const { errorMessages } = req.query
 
@@ -39,13 +40,12 @@ router.get('/', async (req, res) => {
             const userAdmin = {
                 email: username,
                 role: 'admin'
-            } 
-            console.log()
+            }
             res.render('home', {
                 user: userAdmin
             })
         } else {
-            const user = await userService.getByEmail(username).lean()      
+            const user = await userService.getByEmail(username).lean()
             res.render('home', {
                 user
             })
