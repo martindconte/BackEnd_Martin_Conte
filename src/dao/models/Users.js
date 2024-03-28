@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
         required: 'Password is required',
         trim: true
     },
+    cart: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'carts'
+    },
     role: {
         type: String,
         trim: true,
