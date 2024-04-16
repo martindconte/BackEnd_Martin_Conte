@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
     try {
         const { username } = req.session
         if(!username) res.redirect('/login')
-        if ( username === 'adminCoder@coder.com' ) {
+        if ( username === process.env.APP_ADMIN_EMAIL ) {
             const userAdmin = {
                 email: username,
                 role: 'admin'
