@@ -2,8 +2,6 @@ import chatService from "../dao/chat.models.js";
 
 const getChat = async (req, res, next) => {
 
-    console.log(req.session.username)
-
     try {
         const messages = await chatService.get().lean()
 

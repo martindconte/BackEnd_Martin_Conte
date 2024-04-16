@@ -5,9 +5,12 @@ import { generateId } from '../helpers/functions.js';
 
 const initializePassport = () => {
     passport.use('github', new GitHubStrategy({
-        clientID: 'Iv1.e33ac980bb5956f7',
-        clientSecret: 'e3d6ad4c5679c9d49e7b9a72c49dd4f383ec2b22',
-        callbackURL: "http://localhost:8080/api/sessions/githubcallback"
+        clientID: process.env.PASSPORT_CLIENT_ID,
+        clientSecret: process.env.PASSPORT_CLIENT_SECRET,
+        callbackURL: process.env.PASSPORT_CALLBACK_URL,
+        // clientID: 'Iv1.e33ac980bb5956f7',
+        // clientSecret: 'e3d6ad4c5679c9d49e7b9a72c49dd4f383ec2b22',
+        // callbackURL: "http://localhost:8080/api/sessions/githubcallback"
     }, async (_accessToken, _refreshToken, profile, done) => {
         try {
             const user = await userService.getOne({ email: profile._json.email })

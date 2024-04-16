@@ -5,8 +5,8 @@ const singIn = async (req, res) => {
     const msg = []
 
     const userAdmin = {
-        email: 'adminCoder@coder.com',
-        password: 'adminCod3r123'
+        email: process.env.APP_ADMIN_EMAIL,
+        password: process.env.APP_ADMIN_PASS
     }
 
     try {

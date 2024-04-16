@@ -15,15 +15,22 @@ import authViewsRouter from './router/auth.views.routes.js'
 import realTimeProductsRouter from './router/realTimeProducts.routes.js'
 import chatRouter from './router/chat.routes.js'
 import { helpersHbs } from './helpers/helper.handlebars.js';
-import { MONGO_URI } from './config/db.js';
+import { connectDB } from './config/db.js';
 import passport from 'passport';
 import __dirname from './utils.js';
 import initializePassport from './config/passport.config.js';
+import dotenv from 'dotenv'
+
+// enviroment
+dotenv.config()
 
 // Crear la app
 const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+// Data BAse
+connectDB()
 
 // Static Files
 app.use(express.static(path.join(__dirname, 'public')))
@@ -42,15 +49,15 @@ initializePassport()
 app.use(cookieParser())
 app.use(session({
     store: MongoStore.create({
-        mongoUrl: MONGO_URI,
+        mongoUrl: process.env.DATABASE_URL,
     }),
-    secret: "secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }))
 
 // Definir un puerto y arrancar el proyecto
-const port = 8080;
+const port = process.env.PORT || 8080;
 const httpServer = app.listen(port, () => console.log(`Listening app port ${httpServer.address().port}`))
 
 // Configuracion de Web Socket

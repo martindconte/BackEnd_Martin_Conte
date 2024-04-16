@@ -22,7 +22,7 @@ const getProducts = async (req, res) => {
             sort: { price: sort === 'asc' ? 1 : -1 }
         }
 
-        const products = await productService.paginate(filter, options)
+        const products = await productService.paginate(filter, options) 
 
         const queryParameters = {};
         if (query) queryParameters.query = query
