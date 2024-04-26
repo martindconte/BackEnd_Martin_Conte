@@ -1,6 +1,7 @@
-import productService from "../dao/products.models.js"
+import UserDTO from "../../dao/DTO/user.dto.js";
+import { productService } from "../../service/index.service.js";
 
-const renderProducts = async (req, res, next) => {
+export const renderProducts = async (req, res ) => {
 
     try {
 
@@ -43,6 +44,7 @@ const renderProducts = async (req, res, next) => {
         };
 
         const productsData = paginateData.payload.map(product => product.toObject())
+        const baseURL = req.originalUrl
         const pages = Array.from({ length: paginateData.totalPages }, (v, i) => i + 1);
         res.render('products', {
             pageName: 'Productos Disponibles',
@@ -50,7 +52,8 @@ const renderProducts = async (req, res, next) => {
             products: productsData,
             pages,
             queryParameters,
-            user: {email: req.session.username}
+            baseURL,
+            userDTO: req.session.user
         })
 
     } catch (error) {
@@ -59,24 +62,20 @@ const renderProducts = async (req, res, next) => {
     }
 }
 
-const renderProductsById = async (req, res, next) => {
-
+export const renderProductsById = async (req, res ) => {
     const { pid } = req.params
-
+    
     try {
-        const product = await productService.getById(pid).lean()
+        const product = await productService.getById(pid)
+        const plainProducts = product.toObject()
         if (!product) return res.status(404).send({ error: `Product id: ${pid} not found` })
         res.render('productDetail', {
             pageName: product.title,
-            product
+            product: plainProducts,
+            userDTO: req.session.user
         })
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).send({ error: 'Internal server error' });
     }
-}
-
-export {
-    renderProducts,
-    renderProductsById
 }

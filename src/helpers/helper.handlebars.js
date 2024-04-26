@@ -1,16 +1,16 @@
 export const helpersHbs = {
 
-  generatePageLink: (pages, queryParameters) => {
+  generatePageLink: (pages, queryParameters, baseURL) => {
+    const baseUrlWithoutQuery = baseURL.split('?')[0]; // Obtener la URL base sin los parámetros de consulta
     const urlParams = new URLSearchParams(queryParameters);
     urlParams.delete('page');
     const query = urlParams.toString();
-    console.log('queries: ', queryParameters)
     const links = pages.map(page => `
-      <li><a href="/products?page=${page}&${query}">${page}</a></li>
+        <li><a href="${baseUrlWithoutQuery}?page=${page}${query ? `&${query}` : ''}">${page}</a></li>
     `);
 
     return links.join('\n');
-  },
+},
 
   formatCurrency: (price) => {
     return Intl.NumberFormat("es-AR", {
@@ -24,7 +24,6 @@ export const helpersHbs = {
   subTotalPrice: (quantity, price) => quantity * price,
 
   totalPrice: (products) => {
-    console.log(products)
     let total = 0
     products.forEach(item => {
       if( item.product ) {

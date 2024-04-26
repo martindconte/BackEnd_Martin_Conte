@@ -1,5 +1,5 @@
 import express from "express"
-import { renderCartById } from "../controllers/views.carts.controller.js"
+import { renderCartById } from "../../controllers/views/carts.views.controller.js"
 
 const router = express.Router()
 

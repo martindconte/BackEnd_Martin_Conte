@@ -1,20 +1,20 @@
-import { productsModel } from './models/Products.js'
+// import { productsModel } from './models/Products.js'
 
-class Products {
+// class Products {
 
-    get = ( params ) => productsModel.find( params )
+//     get = ( params ) => productsModel.find( params )
     
-    getById = ( id ) => productsModel.findOne( {_id: id} )
+//     getById = ( id ) => productsModel.findOne( {_id: id} )
 
-    create = ( doc ) => productsModel.create( doc )
+//     create = ( doc ) => productsModel.create( doc )
     
-    updateById = ( id, update, options ) => productsModel.findByIdAndUpdate( id, update, options )
+//     updateById = ( id, update, options ) => productsModel.findByIdAndUpdate( id, update, options )
     
-    deleteById = ( id ) => productsModel.deleteOne({ _id: id })
+//     deleteById = ( id ) => productsModel.deleteOne({ _id: id })
 
-    paginate = ( filter, options ) => productsModel.paginate( filter, options )
-}
+//     paginate = ( filter, options ) => productsModel.paginate( filter, options )
+// }
 
-const productService = new Products()
+// const productService = new Products()
 
-export default productService
+// export default productService

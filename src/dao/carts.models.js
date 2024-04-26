@@ -1,20 +1,20 @@
-import { cartModel } from './models/Carts.js'
+// import { cartModel } from './models/Carts.js'
 
-class Carts {
+// class Carts {
 
-    get = ( params ) => cartModel.find( params )
+//     get = ( params ) => cartModel.find( params )
     
-    getById = ( id ) => cartModel.findOne( {_id: id} )
+//     getById = ( id ) => cartModel.findOne( {_id: id} )
 
-    create = ( doc ) => cartModel.create( doc )
+//     create = ( doc ) => cartModel.create( doc )
     
-    updateById = ( id, update, options ) => cartModel.findByIdAndUpdate( { _id: id }, update, options ) 
+//     updateById = ( id, update, options ) => cartModel.findByIdAndUpdate( { _id: id }, update, options ) 
     
-    deleteById = ( id ) => productsModel.deleteOne({ _id: id })
+//     deleteById = ( id ) => productsModel.deleteOne({ _id: id })
 
-    aggregate = ( pipeline ) => cartModel.aggregate( pipeline )
-}
+//     aggregate = ( pipeline ) => cartModel.aggregate( pipeline )
+// }
 
-const cartService = new Carts()
+// const cartService = new Carts()
 
-export default cartService
+// export default cartService

@@ -5,21 +5,16 @@ import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import { checkLogged } from './middlewares/auth.js';
+import dotenv from 'dotenv'
 import productsRouter from './router/products.routes.js';
 import cartRouter from './router/cart.routes.js'
 import sessionRouter from './router/sessions.routes.js'
-import productsViewsRouter from './router/products.views.routes.js'
-import cartViewsRouter from './router/cart.views.routes.js'
-import authViewsRouter from './router/auth.views.routes.js'
-import realTimeProductsRouter from './router/realTimeProducts.routes.js'
-import chatRouter from './router/chat.routes.js'
+import viewsRouter from './router/views/views.routes.js'
 import { helpersHbs } from './helpers/helper.handlebars.js';
 import { connectDB } from './config/db.js';
 import passport from 'passport';
-import __dirname from './utils.js';
 import initializePassport from './config/passport.config.js';
-import dotenv from 'dotenv'
+import __dirname from './utils.js';
 
 // enviroment
 dotenv.config()
@@ -93,16 +88,8 @@ io.on('connection', socket => {
 app.use(passport.initialize())
 
 // authentication routes
-app.use('/', authViewsRouter)
 app.use('/api/sessions', sessionRouter)
-// route validation
-app.use(checkLogged)
-
-
+app.use('/', ioMiddleware, viewsRouter)
 // Routing
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)
-app.use('/realtimeproducts', realTimeProductsRouter)
-app.use('/chat', ioMiddleware, chatRouter)
-app.use('/products', productsViewsRouter)
-app.use('/cart', cartViewsRouter)

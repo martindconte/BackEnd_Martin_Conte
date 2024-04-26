@@ -1,11 +1,7 @@
-import express from "express"
-import { checkLogged, userNotLogged } from "../middlewares/auth.js"
-import UserDTO from "../dao/DTO/user.dto.js"
-import { userService } from "../service/index.service.js"
+import UserDTO from "../../dao/DTO/user.dto.js"
+import { userService } from "../../service/index.service.js"
 
-const router = express.Router()
-
-router.get('/login', userNotLogged, (req, res) => {
+export const renderLogin = (req, res) => {
 
     const { errorMessages } = req.query
 
@@ -17,9 +13,9 @@ router.get('/login', userNotLogged, (req, res) => {
         layout: false,
         msg
     })
-})
+}
 
-router.get('/register', (req, res) => {
+export const renderRegister = (req, res) => {
 
     const { errorMessages } = req.query
 
@@ -31,20 +27,20 @@ router.get('/register', (req, res) => {
         layout: false,
         msg
     })
-})
+}
 
-router.get('/current', checkLogged, async (req, res) => {
+export const userDataLog = async (req, res) => {
     try {
             const { user } = req.session
             if(typeof user === 'undefined') return res.redirect('/login')
         if ( user?.username === process.env.APP_ADMIN_EMAIL ) {
             const userAdmin = {
-                email: username,    
-                role: 'admin'
+                email: user.username,
+                role: 'admin',
             }
             res.render('home', {
                 pageName: 'User Data',
-                user: userAdmin
+                userDTO: userAdmin,
             })
         } else {
             const [ userLog ] = await userService.get({ email: user.username })
@@ -58,6 +54,4 @@ router.get('/current', checkLogged, async (req, res) => {
         console.log(error)
         res.status(404).send(error);
     }
-})
-
-export default router
+}

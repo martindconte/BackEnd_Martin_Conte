@@ -1,16 +1,16 @@
-import { userModel } from "./models/Users.js"
+// import { userModel } from "./models/Users.js"
 
-class User {
+// class User {
 
-    get = ( params ) => userModel.find( params )
+//     get = ( params ) => userModel.find( params )
 
-    getOne = ( params ) => userModel.findOne( params )
+//     getOne = ( params ) => userModel.findOne( params )
     
-    getByEmail = ( email ) => userModel.findOne({ email })
+//     getByEmail = ( email ) => userModel.findOne({ email })
 
-    create = ( doc ) => userModel.create( doc )
-}
+//     create = ( doc ) => userModel.create( doc )
+// }
 
-const userService = new User()
+// const userService = new User()
 
-export default userService
+// export default userService

@@ -15,9 +15,9 @@
       </li>
     {{/each}}
   </ul>
-    {{!-- <ul class="numberPage">
-    {{{generatePageLink pages queryParameters}}}
-  </ul> --}}
+    <ul class="numberPage">
+    {{{generatePageLink pages queryParameters baseURL}}}
+  </ul>
 
   <form id="formAddProduct" class="formProducts" action="/api/products" method="POST">
     <p>Formulario de Creacion de Producto</p>

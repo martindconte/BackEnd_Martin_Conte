@@ -1,7 +1,7 @@
-import userService from "../dao/users.models.js";
+import { userService } from "../service/index.service.js"
 
 const singIn = async (req, res) => {
-    
+
     const msg = []
 
     const userAdmin = {
@@ -13,16 +13,25 @@ const singIn = async (req, res) => {
         const { email, password } = req.body
 
         if (email == userAdmin.email && password == userAdmin.password) {
-            req.session.username = email
+            const userAdmin = {
+                username: email,
+                role: 'ADMIN',
+            }
+            req.session.user = userAdmin
             await req.session.save()
+            return res.redirect('/current')
         }
 
-        const user = await userService.getByEmail( email )
-
-        if(user && await user.checkPassword(password)) {
-            req.session.username = email
+        const [user] = await userService.get({ email })
+        if (user && await user.checkPassword(password)) {
+            const userLog = {
+                username: email,
+                role: user.role,
+                cartId: user.cart.toString()
+            }
+            req.session.user = userLog
             await req.session.save()
-            res.redirect('/')
+            return res.redirect('/current')
         } else {
             msg.push('Datos Incorrectos')
             res.redirect(`/login?errorMessages=${JSON.stringify(msg)}`)
@@ -33,31 +42,9 @@ const singIn = async (req, res) => {
     }
 }
 
-const createUser = async (req, res, next) => {
-    const msg = []
-    try {
-        const { first_name, last_name, email, age, password } = req.body
-
-        if (age < 17) msg.push('Edad minima 18 años')
-
-
-        await userService.create( req.body )
-        res.redirect('/login')
-    } catch (error) {
-        if (error.name === 'MongoServerError' && error.code === 11000) {
-            msg.push('Email ya registrado')
-            res.redirect(`/register?errorMessages=${JSON.stringify(msg)}`)
-        } else {
-            console.log(error)
-            msg.push('Revisa la informacion ingresada. Recuerda... TODOS los campos son obligatorios')
-            res.redirect(`/register?errorMessages=${JSON.stringify(msg)}`)
-        }
-    }
-}
-
-const logOut = ( req, res ) => {
-    req.session.destroy(( error ) => {
-        if(error) {
+const logOut = (req, res) => {
+    req.session.destroy((error) => {
+        if (error) {
             res.redirect('/')
         } else {
             res.render('logout', {})
@@ -67,6 +54,5 @@ const logOut = ( req, res ) => {
 
 export {
     singIn,
-    createUser,
     logOut
 }

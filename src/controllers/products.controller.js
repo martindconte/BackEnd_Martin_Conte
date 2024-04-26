@@ -1,9 +1,8 @@
-import productService from "../dao/products.models.js";
+import { productService } from "../service/index.service.js";
 
 const getProducts = async (req, res) => {
 
     try {
-
         let { limit, page, query, sort } = req.query
 
         const filter = query ? {
@@ -67,7 +66,6 @@ const getProductById = async (req, res) => {
 const addProducts = async (req, res) => {
     try {
         const newProduct = await productService.create(req.body)
-        console.log('Desde addProducts', newProduct)
         res.send(newProduct)
     } catch (error) {
         res.status(500).send(error.message);
@@ -106,7 +104,7 @@ const deleteProduct = async (req, res) => {
                 }
             })
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
         res.status(404).send({ error });
     }
 }

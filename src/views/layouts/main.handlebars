@@ -20,21 +20,24 @@
         <nav class="container">
             <h1><a href="/products">E-COMMERCE</a></h1>
             <li><a href="/products">Productos</a></li>
+            <li><a href="/chat">Chat</a></li>
+            <li><a href="/realtimeproducts">Admin Productos</a></li>
             <ul class="container">
                 <li>
-                    <a class="info" href="/">
+                    <a class="info" href="/current">
                         <span class="material-symbols-outlined">account_circle</span>
                         <div class="infoUser">
-                            <span><strong>User: </strong>{{user.email}}</span>
-                            <span><strong>Rol: </strong>{{user.role}}</span>
+                            <span id="userName"><strong>User: </strong>{{userDTO.username}}</span>
+                            <span><strong>Rol: </strong>{{userDTO.role}}</span>
                         </div>
                     </a>
                 </li>
-                <li><span class="material-symbols-outlined">shopping_cart</span></li>
+                <li><a href="/cart/{{userDTO.cartId}}"><span class="material-symbols-outlined">shopping_cart</span></a></li>
                 <li><span class="material-symbols-outlined">location_on</span></li>
             </ul>
         </nav>
     </header>
     {{{body}}}
 </body>
+
 </html>

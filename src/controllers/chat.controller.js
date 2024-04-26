@@ -1,9 +1,10 @@
-import chatService from "../dao/chat.models.js";
+import { chatService } from "../service/index.service.js"
 
 const getChat = async (req, res, next) => {
 
     try {
-        const messages = await chatService.get().lean()
+        const messagesMongo = await chatService.get()
+        const messages= messagesMongo.map(message => message.toObject())
 
         if (!messages) return next()
 
@@ -11,9 +12,9 @@ const getChat = async (req, res, next) => {
             pageName: 'Chat',
             layout: 'main',
             messages,
-            user: {email: req.session.username}
+            userDTO: req.session.user
         })
-        console.log('Imprimiendo...')
+
     } catch (error) {
         console.log(error.message)
         res.status(404).send({ error });

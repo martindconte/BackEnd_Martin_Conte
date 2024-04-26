@@ -5,7 +5,6 @@ const formAddProduct = document.getElementById('formAddProduct')
 cardContainer.addEventListener('click', async (e) => {
   if (e.target.getAttribute("data-id") === "btn-delete") {
     const pid = e.target.getAttribute('id').slice(6);
-    console.log(pid)
     try {
       const response = await fetch(`api/products/${pid}`,
         {

@@ -1,6 +1,6 @@
-import { productService } from "../service/index.service.js";
+import { productService } from "../../service/index.service.js";
 
-const getProductsRealTime = async (req, res, next) => {
+export const getProductsRealTime = async (req, res ) => {
     try {
 
         let { limit, page, query, sort } = req.query 
@@ -40,7 +40,6 @@ const getProductsRealTime = async (req, res, next) => {
             prevLink: products.hasPrevPage ? `/api/products?page=${products.prevPage}&${new URLSearchParams(queryParameters)}` : null,
             nextLink: products.hasNextPage ? `/api/products?page=${products.nextPage}&${new URLSearchParams(queryParameters)}` : null
         };
-
         const productsData = paginateData.payload.map(product => product.toObject())
         const pages = Array.from({ length: paginateData.totalPages }, (v, i) => i + 1);
         const baseURL = req.originalUrl
@@ -51,15 +50,11 @@ const getProductsRealTime = async (req, res, next) => {
             pages,
             queryParameters,
             baseURL,
-            user: req.session.user
+            userDTO: req.session.user
         })
 
     } catch (error) {
         console.log(error)
         res.status(500).send({ status: 'error', error: 'Internal server error. The database query could not be performed' });
     }
-}
-
-export {
-    getProductsRealTime,
 }

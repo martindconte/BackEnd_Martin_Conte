@@ -14,9 +14,11 @@
                 <input type="number" min=1 inputmode="numeric" name="quantity" />
             </div>
         <div class="productBtn">
-            <button class="btn-cart">Agregar al Carrito</button>
-            <button class="btn-accept">Comprar</button>
+            <button class="btn-cart" onclick="addToCart('{{userDTO.cartId}}','{{product._id}}')">Agregar al Carrito</button>
+            <button class="btn-accept"><a href="/cart/{{userDTO.cartId}}" >Finalizar Compra</a></button>
         </div>
         </div>
     </div>
 </main>
+
+<script src="/js/productDetail.js"></script>

@@ -1,15 +1,16 @@
-import cartService from "../dao/carts.models.js";
+import { cartService } from "../../service/index.service.js"
 
 const renderCartById = async ( req, res ) => {
+
     try {
         const { cid } = req.params
-        const cart = await cartService.getById(cid).lean()
-        console.log(JSON.stringify(cart))
+        const cart = await cartService.getById(cid)
+        const cartPlanned = cart.toObject()
         res.render('cartDetail', {
             pageName: 'Cart',
             layout: 'main',
-            cart,
-            user: {email: req.session.username}
+            cart: cartPlanned,
+            userDTO: req.session.user
         })
     } catch (error) {
         console.error(error)

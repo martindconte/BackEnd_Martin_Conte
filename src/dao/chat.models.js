@@ -1,13 +1,13 @@
-import { chatModel } from "./models/Chat.js"
+// import { chatModel } from "./models/Chat.js"
 
-class Chat {
+// class Chat {
 
-    get = ( params ) => chatModel.find( params )
+//     get = ( params ) => chatModel.find( params )
     
-    create = ( doc ) => chatModel.create( doc )
+//     create = ( doc ) => chatModel.create( doc )
 
-}
+// }
 
-const chatService = new Chat()
+// const chatService = new Chat()
 
-export default chatService
+// export default chatService

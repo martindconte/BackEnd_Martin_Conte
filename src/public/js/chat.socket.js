@@ -1,27 +1,8 @@
 const socket = io();
 
+const user = document.getElementById('userName').lastChild.data
 const formSendMessage = document.getElementById('formSendMessage')
 const messageContainer = document.getElementById('messageContainer')
-
-let user = ''
-
-const getEmail = async () => {
-  const { value: email } = await Swal.fire({
-    title: "Input email address",
-    input: "email",
-    inputLabel: "Your email address",
-    inputPlaceholder: "Enter your email address",
-    allowOutsideClick: false
-  });
-  if (email) {
-    Swal.fire(`Entered email: ${email}`);
-  }
-  return email
-}
-
-getEmail()
-  .then(email => user = email)
-  .catch(err => console.error(err))
 
 async function sendMessage(e) {
 
@@ -55,7 +36,6 @@ async function sendMessage(e) {
 }
 
 socket.on('new message', messages => {
-  console.log('Desde clientee eescuchando...', messages)
   if(user) messageContainer.innerHTML = ''
   messages.forEach(message => {
     

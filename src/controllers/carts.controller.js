@@ -1,5 +1,6 @@
-import cartService from "../dao/carts.models.js"
-import productService from "../dao/products.models.js"
+// import cartService from "../dao/carts.models.js"
+// import productService from "../dao/products.models.js"
+import { cartService, productService, ticketService } from '../service/index.service.js'
 
 const getAllCarts = async (req, res) => {
     try {
@@ -38,10 +39,6 @@ const addProductsToCart = async (req, res) => {
 
         const cart = await cartService.getById(cid)
         const product = await productService.getById(pid)
-
-        console.log('cart', cart)
-        console.log('product', product)
-        console.log(cart.products)
 
         if (!cart || !product) res.status(404).send({ error: 'There are no products or carts created with those ids. Create a new cart or verify the id' })
 
@@ -120,13 +117,11 @@ const updateQuantity = async (req, res) => {
 }
 
 const deleteProductInCart = async (req, res) => {
-    console.log('Eliminndo un producto del carrito de compras...')
+
     try {
 
         const { cid, pid } = req.params;
         const cart = await cartService.getById(cid)
-
-        console.log(cart)
 
         if (!cart) res.status(404).json({ error: 'Cart not found...' })
 
@@ -153,8 +148,6 @@ const deleteAllProductsInCart = async (req, res) => {
             { new: true }
         );
 
-        console.log(cart);
-
         if (!cart) return res.status(404).send({ error: 'The products could not be deleted. Check the information' });
 
         res.status(200).json(cart);
@@ -162,7 +155,43 @@ const deleteAllProductsInCart = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Server error when trying to delete products' });
     }
-};
+}
+
+const purchaseCart = async ( req, res ) => {
+    const { cid } = req.params
+    const { user } = req.session
+
+    try {
+        const cart = await cartService.getById( cid )
+        let notPurchaseProducts = []
+        let purchaseProducts = []
+        let totalAmount = 0
+        for( let i = 0 ; i < cart.products.length ; i++ ) {
+            const item = cart.products[i]
+            const remainder = item.product.stock - item.quantity
+            if( remainder >= 0 ){
+                await productService.updateById( item.product._id, { ...item.product.toObject(), stock: remainder }, {} )
+                purchaseProducts.push(item.toObject())
+                totalAmount += item.quantity * item.product.price
+            } else {
+                notPurchaseProducts.push(item.product)
+            }
+        }
+        if( purchaseProducts.length > 0 ) {
+            cart.products = notPurchaseProducts
+            await cartService.updateById(cid, cart, {})
+            const ticket = await ticketService.generate( user.username, totalAmount )
+            return res.send({notPurchaseProducts, purchaseProducts, ticket})
+        } else {
+            return res.send({msg: 'No se a podido realizar la compra. NO HAY STOCK DE NINGUN PRODUCTO'})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+
 
 export {
     createNewCart,
@@ -172,5 +201,6 @@ export {
     updateQuantity,
     deleteAllProductsInCart,
     updateProductsInCart,
-    getAllCarts
+    getAllCarts,
+    purchaseCart
 }
