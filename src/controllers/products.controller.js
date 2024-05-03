@@ -1,3 +1,6 @@
+import CustomError from "../service/errors/CustomError.js";
+import ErrorType from "../service/errors/ErrorType.js";
+import { getProductErrorCode } from "../service/errors/info.js";
 import { productService } from "../service/index.service.js";
 
 const getProducts = async (req, res) => {
@@ -63,12 +66,20 @@ const getProductById = async (req, res) => {
     }
 }
 
-const addProducts = async (req, res) => {
+const addProducts = async (req, res, next) => {
     try {
         const newProduct = await productService.create(req.body)
         res.send(newProduct)
     } catch (error) {
-        res.status(500).send(error.message);
+        console.log(error.message)
+        const customError = new CustomError({
+            name: `The code ${req.body.code} is already registered!`,
+            cause: getProductErrorCode( req.body.code ),
+            message: 'Error creating Product. Check Code...',
+            code: ErrorType.INVALID_DATA
+        })
+        // res.status(500).send(error.message);
+        next(customError)
     }
 }
 

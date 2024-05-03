@@ -1,11 +1,22 @@
+import CustomError from "../service/errors/CustomError.js"
+import ErrorType from "../service/errors/ErrorType.js"
+import { getUserEmailIsNotValid, getUserErrorInfo } from "../service/errors/info.js"
 import { cartService, userService } from "../service/index.service.js"
 
 export const createUser = async (req, res, next) => {
     const msg = []
     try {
         const { first_name, last_name, email, age, password } = req.body
-
-        if (age < 17) msg.push('Edad minima 18 años')
+        
+        if (!first_name || !last_name || !email || age < 17 || !password ) {
+            msg.push('Edad minima 18 años')
+            throw new CustomError({
+                name: 'User Creation Error. All data is Required!',
+                cause: getUserErrorInfo({ first_name, last_name, email, age, password }),
+                message: 'Error creating User. Check Info...',
+                code: ErrorType.INCOMPLETE_DATA
+            })
+        }
 
         const cart = await cartService.create()
         const userData = {
@@ -21,7 +32,14 @@ export const createUser = async (req, res, next) => {
     } catch (error) {
         if (error.name === 'MongoServerError' && error.code === 11000) {
             msg.push('Email ya registrado')
+            const customError =  new CustomError({
+                name: 'The email is already registered!',
+                cause: getUserEmailIsNotValid( req.body.email ),
+                message: 'Error creating User. Check EMAIL...',
+                code: ErrorType.INVALID_DATA
+            })
             res.redirect(`/register?errorMessages=${JSON.stringify(msg)}`)
+            next(customError)
         } else {
             console.log(error)
             msg.push('Revisa la informacion ingresada. Recuerda... TODOS los campos son obligatorios')

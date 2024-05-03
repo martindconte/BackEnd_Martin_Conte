@@ -23,10 +23,10 @@
                     <p class="error">{{this}}</p>
                 {{/each}}
             {{/if}}
-            <form action="/api/sessions/register" method="post">
+            <form action="/api/sessions/register" method="post" novalidate>
                 <div class="labelForm">
                     <label for="first_name">Nombre:</label>
-                    <input type="text" id="first_name" name="first_name" required>
+                    <input type="text" id="first_name" name="first_name" >
                 </div>
                 <div class="labelForm">
                     <label for="last_name">Apellido:</label>

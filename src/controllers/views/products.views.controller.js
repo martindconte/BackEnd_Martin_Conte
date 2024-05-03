@@ -1,7 +1,8 @@
+import { faker } from "@faker-js/faker";
 import UserDTO from "../../dao/DTO/user.dto.js";
 import { productService } from "../../service/index.service.js";
 
-export const renderProducts = async (req, res ) => {
+export const renderProducts = async (req, res) => {
 
     try {
 
@@ -9,13 +10,15 @@ export const renderProducts = async (req, res ) => {
 
         const filter = query ? {
             $and: [
-              { $or: [
-                { category: { $regex: new RegExp(query, 'i') } },
-                { description: { $regex: new RegExp(query, 'i') } },
-              ]},
-              { stock: { $gt: 0 } },
+                {
+                    $or: [
+                        { category: { $regex: new RegExp(query, 'i') } },
+                        { description: { $regex: new RegExp(query, 'i') } },
+                    ]
+                },
+                { stock: { $gt: 0 } },
             ],
-          } : { stock: { $gt: 0 } };
+        } : { stock: { $gt: 0 } };
 
         const options = {
             limit: isNaN(parseInt(limit)) ? 10 : parseInt(limit),
@@ -62,9 +65,9 @@ export const renderProducts = async (req, res ) => {
     }
 }
 
-export const renderProductsById = async (req, res ) => {
+export const renderProductsById = async (req, res) => {
     const { pid } = req.params
-    
+
     try {
         const product = await productService.getById(pid)
         const plainProducts = product.toObject()
@@ -78,4 +81,22 @@ export const renderProductsById = async (req, res ) => {
         console.log(error);
         res.status(500).send({ error: 'Internal server error' });
     }
+}
+
+export const renderMockingProducts = async (req, res) => {
+    const products = []
+    for (let i = 0; i < 10; i++) {
+        products.push({
+            id: faker.database.mongodbObjectId(),
+            title: faker.commerce.productName(),
+            description: faker.commerce.productDescription(),
+            code: faker.string.alphanumeric(10),
+            price: faker.commerce.price(),
+            status: Math.random() < 0.5,
+            stock: faker.number.int({ min: 10, max: 100 }),
+            category: faker.commerce.department(),
+            thumbnails: faker.image.url(),
+        })
+    }
+    res.send(products)
 }

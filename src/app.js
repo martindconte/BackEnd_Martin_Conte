@@ -15,6 +15,7 @@ import { connectDB } from './config/db.js';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import __dirname from './utils.js';
+import errorHandling from './middlewares/errorHandling.middleware.js';
 
 // enviroment
 dotenv.config()
@@ -93,3 +94,5 @@ app.use('/', ioMiddleware, viewsRouter)
 // Routing
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)
+
+app.use(errorHandling)
