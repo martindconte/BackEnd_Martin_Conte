@@ -10,12 +10,14 @@ import productsRouter from './router/products.routes.js';
 import cartRouter from './router/cart.routes.js'
 import sessionRouter from './router/sessions.routes.js'
 import viewsRouter from './router/views/views.routes.js'
+import loggerTest from './router/loggerTest.routes.js'
 import { helpersHbs } from './helpers/helper.handlebars.js';
 import { connectDB } from './config/db.js';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import __dirname from './utils.js';
 import errorHandling from './middlewares/errorHandling.middleware.js';
+import addLogger from './middlewares/logger.middleware.js';
 
 // enviroment
 dotenv.config()
@@ -86,11 +88,13 @@ io.on('connection', socket => {
     })
 })
 
+app.use(addLogger)
 app.use(passport.initialize())
 
 // authentication routes
 app.use('/api/sessions', sessionRouter)
 app.use('/', ioMiddleware, viewsRouter)
+app.use('/loggerTest', loggerTest)
 // Routing
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)

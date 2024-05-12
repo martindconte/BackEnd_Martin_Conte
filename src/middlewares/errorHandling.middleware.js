@@ -5,18 +5,23 @@ const errorHandling = (error, req, res, next)=>{
     console.log(error)
     switch (error.code) {
         case ErrorType.ROUTING_ERROR:
+            req.logger.error(error.name)
             res.status(404).send({status:'error', error: error.name})
             break;
-        case ErrorType.INCOMPLETE_DATA:
+            case ErrorType.INCOMPLETE_DATA:
+            req.logger.error(error.name)
             res.status(400).send({status:'error', error: error.name})
             break;
-        case ErrorType.DATABASE_ERROR:
+            case ErrorType.DATABASE_ERROR:
+            req.logger.error(error.name)
             res.status(500).send({status:'error', error: error.name})
             break;
-        case ErrorType.AUTHORIZATION_ERROR:
+            case ErrorType.AUTHORIZATION_ERROR:
+            req.logger.error(error.name)
             res.status(500).send({status:'error', error: error.name})
             break;
-        default:
+            default:
+            req.logger.error(error.name)
             res.status(500).send({status:'error', error: 'Unhadled error'})
             break;
     } 

@@ -1,0 +1,42 @@
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:17:38.312Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:17:38.358Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:17:38.676Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:17:46.799Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:17:48.781Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:17:57.871Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:02.787Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:03.854Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:05.535Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:05.543Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:05.683Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:05.856Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:05.863Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:05.991Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:06.163Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:06.170Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:06.304Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:06.514Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:06.523Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:06.641Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:06.650Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:06.702Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:22.862Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:22.871Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:22.935Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:31.347Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:31.353Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:31.407Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:31.523Z"}
+{"level":"error","message":"Unauthorized. You are not a user","timestamp":"2024-05-12T22:18:31.530Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:18:31.578Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:20:42.966Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:20:45.050Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:20:46.355Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:20:47.728Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:20:48.384Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:20:48.649Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:21:02.401Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:21:02.736Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:21:06.729Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:21:40.282Z"}
+{"level":"error","message":"The code  is already registered!","timestamp":"2024-05-12T22:21:40.299Z"}
