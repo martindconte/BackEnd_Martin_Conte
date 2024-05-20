@@ -1,5 +1,5 @@
 import express from "express"
-import { renderLogin, renderRegister, userDataLog } from "../../controllers/views/auth.views.controller.js"
+import { changePassword, renderLogin, renderRegister, resetPassword, userDataLog } from "../../controllers/views/auth.views.controller.js"
 import { getProductsRealTime } from "../../controllers/views/realTimeProducts.controller.js"
 import { renderMockingProducts } from "../../controllers/views/products.views.controller.js"
 import { renderCartById } from "../../controllers/views/carts.views.controller.js"
@@ -13,8 +13,11 @@ const router = express.Router()
 router.get('/login', userNotLogged, renderLogin)
 router.get('/register', renderRegister)
 router.get('/current', userDataLog)
+router.get('/reset-password', resetPassword)
+router.get('/change-password/:token', changePassword)
 router.get('/realtimeproducts', checkLogged, checkRole('ADMIN'), getProductsRealTime)
 router.get('/mockingproducts', checkLogged, checkRole('ADMIN'), renderMockingProducts)
+
 router.use('/chat', checkLogged, checkRole('user'), chatRouter)
 router.use('/products', checkLogged, productsViewsRouter)
 router.use('/cart/:cid', checkLogged, checkRole('user') ,renderCartById)

@@ -1,5 +1,5 @@
 import express from "express"
-import { singIn, logOut } from "../controllers/session.controller.js"
+import { singIn, logOut, resetPassword, newPassword } from "../controllers/session.controller.js"
 // import { createUser, singIn, logOut } from "../controllers/session.controller.js"
 import passport from "passport"
 import { createUser } from "../controllers/user.controller.js"
@@ -30,5 +30,11 @@ router.route('/register')
 
 router.route('/logout')
     .post(logOut)
+
+router.route('/reset-password')
+    .post(resetPassword)
+    
+router.route('/change-password/:token')
+    .post(newPassword)
 
 export default router

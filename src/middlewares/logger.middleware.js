@@ -1,7 +1,6 @@
 import { devLogger, prodLogger } from "../utils/logger.js"
 
 const addLogger = ( req, res, next ) => {
-    console.log('aqui primero...........................................')
     if( process.env.NODE_ENV === 'production' ) {
         req.logger = prodLogger
     }

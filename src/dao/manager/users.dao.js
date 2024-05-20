@@ -14,4 +14,13 @@ export default class UserDao {
     async create( doc ) {
         return await userModel.create( doc )
     }
+
+    async updateById( id, update, options ){
+        return await userModel.findByIdAndUpdate( { _id: id }, update, options )
+    }
+
+    async save( doc ){
+        const user = new userModel(doc)
+        return await user.save()
+    }
 }

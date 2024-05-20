@@ -55,3 +55,15 @@ export const userDataLog = async (req, res) => {
         res.status(404).send(error);
     }
 }
+
+export const resetPassword = (req, res) => {
+    res.render('resetPassword', {
+        layout: false
+    })
+}
+
+export const changePassword = ( req, res ) => {
+    res.render('changePassword', {
+        layout: false
+    })
+}
