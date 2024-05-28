@@ -36,9 +36,14 @@ const getCartById = async (req, res) => {
 const addProductsToCart = async (req, res) => {
     try {
         const { pid, cid } = req.params
+        const { user } = req.session;
 
         const cart = await cartService.getById(cid)
         const product = await productService.getById(pid)
+
+        if( user.role == 'PREMIUM' && product.owner == user.username) {
+            throw new Error("Can't add product. The product belong to you")
+        }
 
         if (!cart || !product) res.status(404).send({ error: 'There are no products or carts created with those ids. Create a new cart or verify the id' })
 

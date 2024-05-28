@@ -11,6 +11,7 @@ import cartRouter from './router/cart.routes.js'
 import sessionRouter from './router/sessions.routes.js'
 import viewsRouter from './router/views/views.routes.js'
 import loggerTest from './router/loggerTest.routes.js'
+import userRouter from './router/user.routes.js'
 import { helpersHbs } from './helpers/helper.handlebars.js';
 import { connectDB } from './config/db.js';
 import passport from 'passport';
@@ -98,5 +99,6 @@ app.use('/loggerTest', loggerTest)
 // Routing
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)
+app.use('/api/user', userRouter)
 
 app.use(errorHandling)

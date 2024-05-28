@@ -16,3 +16,12 @@ PASSPORT_CALLBACK_URL=http://localhost:8080/api/sessions/githubcallback
 # USER ADMIN APP
 APP_ADMIN_EMAIL=adminCoder@coder.com
 APP_ADMIN_PASS=adminCod3r123
+
+# JWT
+JWT_SECRET=secret
+
+# MAILING
+MAIL_SERVICE=gmail 
+MAIL_PORT=587
+MAIL_AUTH_USER=contemartindaniel@gmail.com
+MAIL_AUTH_PASS=qoeu xuku gdsv myid

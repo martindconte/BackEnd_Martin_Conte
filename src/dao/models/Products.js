@@ -40,6 +40,10 @@ const productsSchema = new mongoose.Schema({
     thumbnails: {
         type: [String],
         trim: true
+    },
+    owner: {
+        type: String,
+        default: 'ADMIN'
     }
 })
 

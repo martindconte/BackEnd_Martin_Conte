@@ -17,16 +17,25 @@
                 </div>
                 <div class="labelForm">
                     <label for="username">E-Mail:</label>
-                    <input type="email" id="email" name="email" value="{{userDTO.email}}" readonly>
+                    <input type="email" id="username" name="email" value="{{userDTO.email}}" readonly>
+                </div>
+                <div class="labelForm">
+                    <label for="role">Rol:</label>
+                    <input type="text" id="role" name="role" value="{{userDTO.role}}" readonly>
                 </div>
             </div>
             <div class="formProfileBtn">
-                <button class="btn-modify" type="submit">Editar Password</button>
-                <button class="btn-accept" type="submit">Editar Datos</button>
+                <button class="btn-modify" type="button">Editar Password</button>
+                <button class="btn-accept" type="button">Editar Datos</button>
             </div>
         </form>
-        <form action="/api/sessions/logout" method="post" class="formProfileBtn">
-            <button class="btn-delete" type="submit">Cerrar Sesion</button>
-        </form>
+<div class="containerBtnCurrent">
+            <form action='/api/user/premium/{{userDTO.id}}' method="post" class="formProfileBtn">
+                <button class="btn-role">Cambiar Rol</button>
+            </form>
+            <form action="/api/sessions/logout" method="post" class="formProfileBtn">
+                <button class="btn-delete" type="submit">Cerrar Sesion</button>
+            </form>
+</div>
     </div>
 </main>

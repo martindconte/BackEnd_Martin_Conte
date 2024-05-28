@@ -67,6 +67,13 @@ const getProductById = async (req, res) => {
 }
 
 const addProducts = async (req, res, next) => {
+
+    const { user } = req.session;
+
+    if(user.role == 'PREMIUM') {
+        req.body.owner = user.username
+    }
+
     try {
         const newProduct = await productService.create(req.body)
         res.send(newProduct)
@@ -104,8 +111,16 @@ const updatedProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
 
     const { pid } = req.params
+    const { user } = req.session
 
     try {
+
+        const product = await productService.getById( pid )
+
+        if( user.role == 'PREMIUM' && product.owner != user.username) {
+            throw new Error(`Can't delete item. The product belong to the user: ${product.owner}`)
+        }
+
         const result = await productService.deleteById( pid )
         result.deletedCount > 0
             ? res.status(200).send({ message: `Product id: ${req.params.pid} was successfully deleted` })

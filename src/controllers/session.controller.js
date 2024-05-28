@@ -28,6 +28,7 @@ const singIn = async (req, res) => {
         const [user] = await userService.get({ email })
         if (user && await user.checkPassword(password)) {
             const userLog = {
+                id: user._id.toString(),
                 username: email,
                 role: user.role,
                 cartId: user.cart.toString()
@@ -83,31 +84,20 @@ const newPassword = async (req, res) => {
     try {
         jwt.verify(token, jwtSecret.secret, async (error, decode) => {
 
-            console.log('errror.-..........................', error)
-
             if (error) return res.redirect('/reset-password')
 
             const { _id } = decode
             const user = await userService.getById({ _id })
+            
+            if (await user.checkPassword(password)) {
+                return res.redirect(`/login?errorMessages=[${JSON.stringify('The password must be different')}]`)
+            }
+            
             user.password = password
-
             await userService.save(user)
-
-            // const newData = {
-            //     _id: decode._id,
-            //     first_name: decode.first_name,
-            //     last_name: decode.last_name,
-            //     email: decode.email,
-            //     age: decode.age,
-            //     cart: decode.cart,
-            //     rol: decode.role,
-            //     password
-            // }
-
-            // await userService.updateById( decode._id, newData, {})
+            res.redirect(`/login?errorMessages=[${JSON.stringify('The password has been changed')}]`)
         })
 
-        res.redirect('/login')
 
     } catch (error) {
         console.log(error)

@@ -837,3 +837,87 @@ footer {
     font-size: var(--font-size-m);
     color: black;
 }
+
+.formResetPassword {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.formResetPassword input {
+    width: 300px;
+    padding: 2px 5px;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-m);
+}
+
+.formResetPassword button {
+    background-color: #57ff6d;
+    padding: 3px 20px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-m);
+    cursor: pointer;
+    box-shadow: #ffffff 0px 0px 20px 3px;
+}
+
+.formResetPassword button:hover {
+    background-color: #dd0000;
+    color: white;
+    box-shadow: #ffa7a7 0px 0px 20px 3px;
+}
+
+.parrafo {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-s);
+    text-align: center;
+    margin: 15px auto;
+}
+
+.btn-volver {
+    padding: 5px;
+    font-family: var(--font-btn);
+    background-color: #d83cff;
+    /* font-weight: bold; */
+    border-radius: .25rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 1s ease, color 1s ease, box-shadow 1s ease;
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    width: fit-content;
+}
+
+.btn-volver:hover {
+    background-color: #670081;
+    box-shadow: #eda7ff 0px 0px 20px 3px;
+    /* color: black; */
+}
+
+.containerBtnCurrent {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.btn-role {
+    padding: 5px;
+    font-family: var(--font-btn);
+    background-color: #e4ff6c;
+    /* font-weight: bold; */
+    border-radius: .25rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1s ease, color 1s ease, box-shadow 1s ease;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+}
+
+.btn-role:hover {
+    background-color: #8ead00;
+    box-shadow: #e7ff7c 0px 0px 20px 3px;
+    /* color: black; */
+}

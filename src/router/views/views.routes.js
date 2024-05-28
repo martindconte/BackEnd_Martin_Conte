@@ -15,12 +15,12 @@ router.get('/register', renderRegister)
 router.get('/current', userDataLog)
 router.get('/reset-password', resetPassword)
 router.get('/change-password/:token', changePassword)
-router.get('/realtimeproducts', checkLogged, checkRole('ADMIN'), getProductsRealTime)
+router.get('/realtimeproducts', checkLogged, checkRole(['ADMIN', 'PREMIUM']), getProductsRealTime)
 router.get('/mockingproducts', checkLogged, checkRole('ADMIN'), renderMockingProducts)
 
 router.use('/chat', checkLogged, checkRole('user'), chatRouter)
 router.use('/products', checkLogged, productsViewsRouter)
-router.use('/cart/:cid', checkLogged, checkRole('user') ,renderCartById)
+router.use('/cart/:cid', checkLogged, checkRole(['user','PREMIUM']) ,renderCartById)
 
 router.get('/', ( req, res ) => {
 

@@ -45,9 +45,10 @@ export const userDataLog = async (req, res) => {
         } else {
             const [ userLog ] = await userService.get({ email: user.username })
             const userDTO = new  UserDTO(userLog)
+            console.log('userDTO --------------------------------->', userDTO);
             res.render('home', {
                 pageName: 'User Data',
-                userDTO
+                userDTO: { ...userDTO,  }
             })
         }
     } catch (error) {

@@ -47,3 +47,23 @@ export const createUser = async (req, res, next) => {
         }
     }
 }
+
+export const changeRole = async ( req, res ) => {
+    console.log('Modificando el role.....');
+    console.log(req.session);
+    const { user } = req.session
+
+    try {
+        const userData = await userService.getById({ _id: user.id })
+    
+        userData.role == 'user'
+            ? userData.role = 'PREMIUM'
+            : userData.role = 'user'
+        
+        await userService.save(userData)
+        res.redirect('/current')
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ status: 'error', error: 'Internal server error. The email query could not be performed to get users' });
+    }   
+}
