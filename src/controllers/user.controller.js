@@ -55,12 +55,17 @@ export const changeRole = async ( req, res ) => {
 
     try {
         const userData = await userService.getById({ _id: user.id })
+
+        console.log(userData);
     
         userData.role == 'user'
             ? userData.role = 'PREMIUM'
             : userData.role = 'user'
         
-        await userService.save(userData)
+        await userService.updateById( user.id, userData)
+
+        req.session.user.role = userData.role
+        await req.session.save()
         res.redirect('/current')
     } catch (error) {
         console.log(error)

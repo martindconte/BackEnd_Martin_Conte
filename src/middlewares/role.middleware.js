@@ -10,6 +10,8 @@ export const checkRole = ( role ) => ( req, res, next ) => {
     if(!Array.isArray(role)) {
         role = [ role ]
     }
+
+    console.log('user-------------------->', user);
     // if( user.role != role ){
     if( !role.includes(user.role) ){
         const customError =  new CustomError({
