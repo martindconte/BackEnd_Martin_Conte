@@ -57,7 +57,7 @@ const getProductById = async (req, res) => {
     const { pid } = req.params
 
     try {
-        const product = await productService.getById( pid ).lean()
+        const product = await productService.getById( pid )
         if (!product) return res.status(404).send({ error: `Product id: ${pid} not found` })
             res.send(product)
     } catch (error) {

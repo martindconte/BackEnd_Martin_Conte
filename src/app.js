@@ -6,6 +6,8 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import dotenv from 'dotenv'
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUiExpress from 'swagger-ui-express'
 import productsRouter from './router/products.routes.js';
 import cartRouter from './router/cart.routes.js'
 import sessionRouter from './router/sessions.routes.js'
@@ -19,6 +21,7 @@ import initializePassport from './config/passport.config.js';
 import __dirname from './utils.js';
 import errorHandling from './middlewares/errorHandling.middleware.js';
 import addLogger from './middlewares/logger.middleware.js';
+import swaggerJSDoc from 'swagger-jsdoc';
 
 // enviroment
 dotenv.config()
@@ -91,6 +94,21 @@ io.on('connection', socket => {
 
 app.use(addLogger)
 app.use(passport.initialize())
+
+// swagger documentation
+const swaggerOption = {
+    definition: {
+        openapi: '3.0.1',
+        info: {
+            title: 'e-commerce Coder Documentation',
+            description: 'Entrega Coder'
+        }
+    },
+    apis: [`${__dirname}/docs/**/*.yaml`]
+}
+
+const specs = swaggerJSDoc(swaggerOption)
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
 // authentication routes
 app.use('/api/sessions', sessionRouter)
