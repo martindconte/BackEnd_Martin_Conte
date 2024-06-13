@@ -50,13 +50,13 @@ export const createUser = async (req, res, next) => {
 
 export const changeRole = async ( req, res ) => {
     console.log('Modificando el role.....');
-    console.log(req.session);
+    console.log('desde changleRole req.session --------------------->', req.session);
     const { user } = req.session
 
     try {
         const userData = await userService.getById({ _id: user.id })
 
-        console.log(userData);
+        console.log('desde changleRole userData --------------------->', userData);
     
         userData.role == 'user'
             ? userData.role = 'PREMIUM'

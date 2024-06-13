@@ -15,9 +15,6 @@ const singIn = async (req, res) => {
     try {
         const { email, password } = req.body
 
-        console.log('email ---------------->', email);
-        console.log('password ---------------->', password);
-
         if (email == userAdmin.email && password == userAdmin.password) {
             const userAdmin = {
                 username: email,
@@ -29,8 +26,7 @@ const singIn = async (req, res) => {
         }
 
         const [user] = await userService.get({ email })
-        console.log('user ------------------------>', user);
-        console.log('checkPass ------------------------>', await user.checkPassword(password));
+
         if (user && await user.checkPassword(password)) {
             const userLog = {
                 id: user._id.toString(),

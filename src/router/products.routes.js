@@ -7,6 +7,7 @@ const router = express.Router()
 // api/products
 
 router.route('/')
+    // .get( getProducts )
     .get( checkRole(['ADMIN', 'PREMIUM']), getProducts )
     .post( checkRole(['ADMIN', 'PREMIUM']), addProducts )
 

@@ -69,12 +69,19 @@ const getProductById = async (req, res) => {
 const addProducts = async (req, res, next) => {
 
     const { user } = req.session;
-
+    const { code } = req.body
+    
     if(user.role == 'PREMIUM') {
         req.body.owner = user.username
     }
-
+    
     try {
+        const isDuplicated = await productService.get({ code })
+
+        if( isDuplicated.length > 0 ) {
+            return res.status(404).send(`The code ${req.body.code} is already registered!`)
+        }
+
         const newProduct = await productService.create(req.body)
         res.send(newProduct)
     } catch (error) {
@@ -85,7 +92,7 @@ const addProducts = async (req, res, next) => {
             message: 'Error creating Product. Check Code...',
             code: ErrorType.INVALID_DATA
         })
-        // res.status(500).send(error.message);
+        res.status(400).send(`The code ${req.body.code} is already registered!`)
         next(customError)
     }
 }
@@ -111,6 +118,7 @@ const updatedProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
 
     const { pid } = req.params
+    console.log('el pid es ---------------->', pid);
     const { user } = req.session
 
     try {

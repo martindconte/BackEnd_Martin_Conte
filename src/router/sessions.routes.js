@@ -5,6 +5,8 @@ import passport from "passport"
 import { createUser } from "../controllers/user.controller.js"
 import { userService } from "../service/index.service.js"
 
+// /api/session/
+
 const router = express.Router()
 
 //passport

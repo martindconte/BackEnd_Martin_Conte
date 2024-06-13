@@ -23,6 +23,7 @@ const createNewCart = async (req, res) => {
 }
 
 const getCartById = async (req, res) => {
+
     try {
         const { cid } = req.params
         const cart = await cartService.getById(cid)
@@ -97,8 +98,11 @@ const updateProductsInCart = async (req, res) => {
 const updateQuantity = async (req, res) => {
     console.log('Modificando la cantidad de Productos que hay en un carrito... el body sera la cantidad de productos')
     const { quantity: newQuantity } = req.body
+    console.log(newQuantity);
 
-    if( newQuantity < 0 ) return res.status(404).json({ error: 'The quantity cannot be less than zero' })
+    if( newQuantity < 1 ) {
+        return res.status(404).send({ error: 'The quantity cannot be less than zero' })
+    }
 
     const { cid, pid } = req.params
 
@@ -110,7 +114,7 @@ const updateQuantity = async (req, res) => {
         if (productIndex !== -1) {
             cart.products[productIndex].quantity = newQuantity
         } else {
-            res.status(404).json({ error: 'Error finding the product in the shopping cart' })
+            return res.status(404).send({ error: 'Error finding the product in the shopping cart' })
         }
 
         await cartService.updateById( cid, cart, { returnNewDocument: true } )

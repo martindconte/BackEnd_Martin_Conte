@@ -15,7 +15,14 @@ const jwtSecret = {
     secret: process.env.JWT_SECRET
 }
 
+const adminUser = {
+    username: process.env.APP_ADMIN_EMAIL,
+    password: process.env.APP_ADMIN_PASS,
+    role: 'ADMIN',
+}
+
 export {
     mailing,
-    jwtSecret
+    jwtSecret,
+    adminUser
 }

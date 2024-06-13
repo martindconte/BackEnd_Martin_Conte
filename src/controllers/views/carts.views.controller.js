@@ -1,9 +1,20 @@
 import { cartService } from "../../service/index.service.js"
 
-const renderCartById = async ( req, res ) => {
+const renderCartById = async ( req, res, next ) => {
 
     try {
+
+        console.log(req.session.user);
+        const { cartId } = req.session.user 
+
         const { cid } = req.params
+
+        if( cartId != cid ) {
+            return res.redirect('/')
+            // res.redirect
+            // next()
+        }
+
         const cart = await cartService.getById(cid)
         const cartPlanned = cart.toObject()
         res.render('cartDetail', {

@@ -40,3 +40,5 @@
 {"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:21:06.729Z"}
 {"level":"info","message":"NODE_ENV: production","timestamp":"2024-05-12T22:21:40.282Z"}
 {"level":"error","message":"The code  is already registered!","timestamp":"2024-05-12T22:21:40.299Z"}
+{"level":"info","message":"NODE_ENV: production","timestamp":"2024-06-01T23:25:03.215Z"}
+{"level":"error","message":"TypeError","timestamp":"2024-06-01T23:25:03.237Z"}

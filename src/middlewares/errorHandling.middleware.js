@@ -2,7 +2,7 @@ import ErrorType from "../service/errors/ErrorType.js";
 
 const errorHandling = (error, req, res, next)=>{
 
-    console.log(error)
+    console.log('error ------------> ', error.code)
     switch (error.code) {
         case ErrorType.ROUTING_ERROR:
             req.logger.error(error.name)
@@ -18,7 +18,7 @@ const errorHandling = (error, req, res, next)=>{
             break;
             case ErrorType.AUTHORIZATION_ERROR:
             req.logger.error(error.name)
-            res.status(500).send({status:'error', error: error.name})
+            res.status(403).send({status:'error', error: error.name})
             break;
             default:
             req.logger.error(error.name)

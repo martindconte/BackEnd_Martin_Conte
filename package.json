@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "set NODE_ENV=production& node src/app.js",
-    "dev": "set NODE_ENV=developmennt& nodemon src/app.js"
+    "dev": "set NODE_ENV=developmennt& nodemon src/app.js",
+    "test": "set NODE_ENV=test& mocha test --recursive"
   },
   "author": "Martin Daniel Conte",
   "license": "ISC",
@@ -31,6 +32,9 @@
     "winston": "^3.13.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "chai": "^5.1.1",
+    "mocha": "^10.4.0",
+    "nodemon": "^3.0.2",
+    "supertest": "^7.0.0"
   }
 }
