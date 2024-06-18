@@ -27,13 +27,18 @@ const singIn = async (req, res) => {
 
         const [user] = await userService.get({ email })
 
+        console.log('user signIn ------------------------>', user);
+
         if (user && await user.checkPassword(password)) {
             const userLog = {
                 id: user._id.toString(),
                 username: email,
                 role: user.role,
-                cartId: user.cart.toString()
+                cartId: user.cart.toString(),
+                profileImg: 'src/public' + user.profile_image
             }
+            
+            await userService.updateById(user._id, { last_connection: new Date() });
             req.session.user = userLog
             await req.session.save()
             return res.redirect('/current')
@@ -47,7 +52,14 @@ const singIn = async (req, res) => {
     }
 }
 
-const logOut = (req, res) => {
+const logOut = async (req, res) => {
+
+    const { id } = req.session.user
+
+    const user = await userService.getById({ id })
+
+    await userService.updateById(user._id, { last_connection: new Date() });
+        
     req.session.destroy((error) => {
         if (error) {
             res.redirect('/')

@@ -797,7 +797,6 @@ footer {
     padding: 10px 20px;
     border-radius: 5px;
     border: 1px solid white ;
-    margin: 20px auto;
     gap: 15px;
 }
 
@@ -920,4 +919,34 @@ footer {
     background-color: #8ead00;
     box-shadow: #e7ff7c 0px 0px 20px 3px;
     /* color: black; */
+}
+
+.formImgProfile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.formImgProfile button {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-m);
+    color: black;
+}
+
+.file-custom {
+    /* margin: 0px 10px; */
+    background-color: rgb(247, 25, 255);
+    padding: 5px 10px;
+    border-radius: .25rem;
+    cursor: pointer;;
+}
+
+.current {
+    display: flex;
+    gap: 20px;
+}
+
+.imgProfile {
+    height: 80px;
 }

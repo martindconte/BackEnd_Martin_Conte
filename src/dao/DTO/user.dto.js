@@ -8,5 +8,6 @@ export default class UserDTO {
         this.role = user.role
         this.username = user.email
         this.cartId = user.cart.toString()
+        this.profileImg = user.profile_image
     }
 }

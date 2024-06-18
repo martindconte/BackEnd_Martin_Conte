@@ -1,9 +1,15 @@
 import express from "express"
-import { changeRole } from "../controllers/user.controller.js"
+import { changeRole, uploadDocuments, profileImg } from "../controllers/user.controller.js"
 import { checkRole } from "../middlewares/role.middleware.js"
+import { upload } from "../middlewares/multer.middleware.js"
 
 const router = express.Router()
 
-router.post('/premium/:uid', checkRole(['user', 'PREMIUM']) ,changeRole)
+//api/users
 
-export default router
+router.post('/premium/:uid', checkRole(['user', 'PREMIUM']) ,changeRole)
+router.post('/:uid/documents', upload.array('document') ,uploadDocuments)
+router.post('/:uid/profile-img', upload.single('profile') , profileImg)
+
+
+export default router 

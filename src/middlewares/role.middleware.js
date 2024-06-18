@@ -5,6 +5,8 @@ import { getUserErrorRole } from "../service/errors/info.js"
 export const checkRole = ( role ) => ( req, res, next ) => {
 
     const { user } = req.session
+
+    console.log('user --------------------------->', user);
     
     if(!Array.isArray(role)) {
         role = [ role ]

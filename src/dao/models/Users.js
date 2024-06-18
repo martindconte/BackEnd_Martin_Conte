@@ -38,15 +38,37 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
         default: "user"
+    },
+    documents: {
+        type: [{
+            name: String,
+            reference: String,
+        }],
+        default: []
+    },
+    last_connection: {
+        type: Date,
+        default: null,
+
+    },
+    profile_image: {
+        type: String,
+        default: ''
     }
 })
 
 userSchema.pre('save', async function(next) {
-    if(!this.isModified('password')) next()
-    const salt = await bcrypt.genSalt(10)
-    this.password = await bcrypt.hash(this.password, salt)
-    next()
-})
+    console.log('modificado -.---------------->', this.isModified('password'));
+    if (!this.isModified('password')) {
+        console.log('aqui ------------------------------------> Password not modified, skipping hash update.');
+        next();
+        return;
+    }
+    console.log('Password modified, updating hash.');
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+});
 
 userSchema.methods.checkPassword = async function(pass) {
     return await bcrypt.compare(pass, this.password)
