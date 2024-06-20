@@ -280,23 +280,54 @@ footer {
 }
 
 .formProducts {
+    font-family: var(--font-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
     background-color: white;
     width: 50%;
-    margin: 0 auto;
+    margin: 30px auto;
+    padding: 15px 0px;
+    background-color: rgb(29, 29, 29);
+    color: white;
+    border-radius: 1rem;
+    border: white double 2px;
+}
+
+.formContainer {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formProductsLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.formProductsLabel input {
+    padding: 5px;
+    text-align: left;
+}
+
+.formProductsTitle {
+    font-size: var(--font-size-m);
+    padding: 10px 0px;
 }
 
 /* .formProducts label {
     display: block;
 } */
 
-.formProducts input {
+/* .formProducts input {
     text-align: center;
-    /* width: 100%; */
-}
+    width: 100%;
+} */
 
 /* chat */
 .mainChat {
@@ -791,6 +822,8 @@ footer {
 
 .userProfile {
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
     background-color: #3a3a3a;
     font-family: var(--font-primary);
     font-size: var(--font-size-m);
@@ -944,9 +977,50 @@ footer {
 
 .current {
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
 .imgProfile {
     height: 80px;
+}
+
+.thumbnail {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.formDocs {
+    font-family: var(--font-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    width: 50%;
+    margin: 15px auto;
+    border: white solid 2px;
+    padding: 10px 20px;
+    border-radius: 1rem;
+}
+
+.titleFormDocs {
+    text-align: center;
+    color: white;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-l);
+    padding: 10px 0px;
+    margin: 10px auto;
+}
+
+.formDocs button {
+    background-color: rgb(111, 255, 176);
+    padding: 5px 10px;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.formDocsLabel {
+    display: flex;
+    gap: 15px;
 }

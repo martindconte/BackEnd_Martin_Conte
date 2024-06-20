@@ -5,14 +5,15 @@ const storage = multer.diskStorage({
 
     destination: function (req, file, cb) {
 
-        console.log('desde multer -----------------------------------------------------------------');
-
         let destinationFolder = ''
         if( req.originalUrl.includes('documents') ) {
             destinationFolder = '/documents'
         }
         if( req.originalUrl.includes('profile-img') ) {
             destinationFolder = '/profiles'
+        }
+        if( req.originalUrl.includes('/api/products') && req.method == 'POST' ) {
+          destinationFolder = '/products'
         }
 
         console.log('destination ------------------------->', destinationFolder);

@@ -41,6 +41,7 @@ export const getProductsRealTime = async (req, res ) => {
             nextLink: products.hasNextPage ? `/api/products?page=${products.nextPage}&${new URLSearchParams(queryParameters)}` : null
         };
         const productsData = paginateData.payload.map(product => product.toObject())
+        console.log({productsData});
         const pages = Array.from({ length: paginateData.totalPages }, (v, i) => i + 1);
         const baseURL = req.originalUrl
         res.render('realTimeProducts', {

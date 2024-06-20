@@ -1,6 +1,7 @@
 import express from "express"
 import { getProducts, addProducts, updatedProduct, getProductById, deleteProduct } from "../controllers/products.controller.js"
 import { checkRole } from "../middlewares/role.middleware.js"
+import { upload } from "../middlewares/multer.middleware.js"
 
 const router = express.Router()
 
@@ -9,7 +10,7 @@ const router = express.Router()
 router.route('/')
     // .get( getProducts )
     .get( checkRole(['ADMIN', 'PREMIUM']), getProducts )
-    .post( checkRole(['ADMIN', 'PREMIUM']), addProducts )
+    .post(checkRole(['ADMIN', 'PREMIUM']),  upload.array('thumbnails'),  addProducts )
 
 router.route('/:pid')
     .get( checkRole(['ADMIN', 'PREMIUM']), getProductById )

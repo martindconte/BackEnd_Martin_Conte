@@ -49,19 +49,26 @@ export const createUser = async (req, res, next) => {
 }
 
 export const changeRole = async (req, res) => {
-    console.log('Modificando el role.....');
-    console.log('desde changleRole req.session --------------------->', req.session);
+
     const { user } = req.session
+
+    const requiredDocs = [ 'identificacion', 'domicilio', 'estado_cuenta' ]
 
     try {
         const userData = await userService.getById({ _id: user.id })
+        console.log('userData ------------->', userData);
 
-        console.log('desde changleRole userData --------------------->', userData);
+        if( userData.role === 'user' ) {
+            if( !userData.documents.some( document => document.name.includes('identificacion') ) ) throw new Error('Missing identificacion Document')
+            if( !userData.documents.some( document => document.name.includes('domicilio') ) ) throw new Error('Missing identificacion Document')
+            if( !userData.documents.some( document => document.name.includes('cuenta') ) ) throw new Error('Missing identificacion Document')
+        }
 
         userData.role == 'user'
             ? userData.role = 'PREMIUM'
             : userData.role = 'user'
 
+        
         await userService.updateById(user.id, userData)
 
         req.session.user.role = userData.role
@@ -76,27 +83,24 @@ export const changeRole = async (req, res) => {
 export const uploadDocuments = async (req, res) => {
 
     const { uid } = req.params
-    // console.log(req.session);
+    
     try {
         const user = await userService.getById({ id: uid })
-        let documents = user.documents || []
 
-        console.log('user ------------>', user);
+        const documentsUpdate = [];
 
-        console.log('req.files ---------->', req.files);
-        
-        const newDocuments = documents.concat(req.files.map(file => ({
-            name: file.originalname,
-            reference: file.path.split('public')[1].replace(/\\/g, '/')
-        })));
+        for (const [key, value] of Object.entries(req.files)) {
+          value.forEach(file => {
+            documentsUpdate.push({
+              name: file.fieldname,
+              reference: file.path.split('public')[1].replace(/\\/g, '/')
+            });
+          });
+        }
 
-        console.log('documents ------------->', documents);
+        await userService.updateById(user._id, { documents: documentsUpdate }, { new: true });
 
-        const updateUser = await userService.updateById(user._id, { documents: newDocuments }, { new: true });
-
-        console.log(updateUser);
-
-        res.send({ status: 'success', payload: updateUser })
+        res.redirect('/current')
     } catch (error) {
         res.status(500).send({ status: 'error', error: error.message })
     }
@@ -104,19 +108,12 @@ export const uploadDocuments = async (req, res) => {
 
 export const profileImg = async ( req, res ) => {
 
-    console.log('el body --------------------->', req.body);
-
     const { uid } = req.params
-    // console.log(req.session);
+
     try {
         const user = await userService.getById({ id: uid })
-        // let documents = user.documents || []
 
-        // console.log('user ------------>', user);
-
-        console.log('req.file ---------->', req.file);
-
-        const updateUser = await userService.updateById(user._id, { profile_image: req.file.path.split('public')[1].replace(/\\/g, '/') }, { new: true });
+        await userService.updateById(user._id, { profile_image: req.file.path.split('public')[1].replace(/\\/g, '/') }, { new: true });
     
         res.redirect('/current')
     } catch (error) {

@@ -12,8 +12,8 @@ cardContainer.addEventListener('click', async (e) => {
         }
       )
 
-      if(!response.ok) throw new Error(`Response desde Index: ${response.status}`)
-      
+      if (!response.ok) throw new Error(`Response desde Index: ${response.status}`)
+
       socket.emit('delete-product', pid);
     } catch (error) {
       console.log('error deleting the product', error.message)
@@ -22,42 +22,68 @@ cardContainer.addEventListener('click', async (e) => {
 });
 
 formAddProduct.addEventListener('submit', async (e) => {
-  e.preventDefault()
+  e.preventDefault();
 
-  const newProduct = {};
-  const formData = new FormData(formAddProduct)
-  formData.forEach((value, key) => {
-    newProduct[key] = key === 'thumbnails'
-      ? newProduct[key] = Array.from(formData.getAll('thumbnails')).map(file => file.name)
-      : newProduct[key] = value.trim()
-  }
-  );
+  const formData = new FormData(formAddProduct);
 
   try {
     const response = await fetch('api/products', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newProduct)
-    })
-    if(!response.ok) throw new Error(`Response: ${response.status}`)
+      method: 'POST',
+      body: formData 
+    });
+    if (!response.ok) throw new Error(`Response: ${response.status}`);
 
-    const product = await response.json()
-    console.log('Desde Index agregandfo producto...', product)
-    socket.emit('add-products', product );
+    const product = await response.json();
+    console.log('Desde Index agregando producto...', product);
+    
+    socket.emit('add-products', product);
+
+    window.location.reload()
+
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
+// formAddProduct.addEventListener('submit', async (e) => {
+//   e.preventDefault()
+
+//   const newProduct = {};
+//   const formData = new FormData(formAddProduct)
+//   console.log(formData);
+//   formData.forEach((value, key) => {
+//     newProduct[key] = key === 'thumbnails'
+//       ? newProduct[key] = Array.from(formData.getAll('thumbnails')).map(file => file.name)
+//       : newProduct[key] = value.trim()
+//   }
+//   );
+
+//   console.log({ newProduct });
+
+//   try {
+//     const response = await fetch('api/products', {
+//       method: "POST",
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(newProduct)
+//     })
+//     if (!response.ok) throw new Error(`Response: ${response.status}`)
+
+//     const product = await response.json()
+//     console.log('Desde Index agregandfo producto...', product)
+//     socket.emit('add-products', product);
+//   } catch (error) {
+//     console.log(error)
+//   }
+// })
 
 socket.on('update-products', async () => {
 
   try {
     const response = await fetch('api/products')
 
-    if(!response.ok) throw new Error(`Response: ${response.status}`)
-    
+    if (!response.ok) throw new Error(`Response: ${response.status}`)
+
     const data = await response.json()
     console.log(data)
     cardContainer.innerHTML = ''
@@ -77,6 +103,6 @@ socket.on('update-products', async () => {
       cardContainer.appendChild(productItem);
     })
   } catch (error) {
-    res.status(500).send( error.message );
+    res.status(500).send(error.message);
   }
 })

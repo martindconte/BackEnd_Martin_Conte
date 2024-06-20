@@ -5,11 +5,16 @@ import { upload } from "../middlewares/multer.middleware.js"
 
 const router = express.Router()
 
-//api/users
+//api/user
 
-router.post('/premium/:uid', checkRole(['user', 'PREMIUM']) ,changeRole)
-router.post('/:uid/documents', upload.array('document') ,uploadDocuments)
-router.post('/:uid/profile-img', upload.single('profile') , profileImg)
+router.post('/premium/:uid', checkRole(['user', 'PREMIUM']), changeRole)
+// router.post('/:uid/documents', upload.array('document') ,uploadDocuments)
+router.post('/:uid/profile-img', upload.single('profile'), profileImg)
+router.post('/:uid/documents', upload.fields([
+    { name: 'identificacion', maxCount: 1 },
+    { name: 'domicilio', maxCount: 1 },
+    { name: 'cuenta', maxCount: 1 }
+]), uploadDocuments)
 
 
 export default router 

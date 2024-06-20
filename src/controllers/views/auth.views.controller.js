@@ -46,11 +46,10 @@ export const userDataLog = async (req, res) => {
             const [ userLog ] = await userService.get({ email: user.username })
             const userDTO = new  UserDTO(userLog)
 
-            console.log('desde current --------------------->', userDTO);
-
             res.render('home', {
                 pageName: 'User Data',
-                userDTO: { ...userDTO,  }
+                userDTO: { ...userDTO,  },
+                notAdmin: true
             })
         }
     } catch (error) {

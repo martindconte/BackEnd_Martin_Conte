@@ -58,13 +58,13 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.pre('save', async function(next) {
-    console.log('modificado -.---------------->', this.isModified('password'));
+
     if (!this.isModified('password')) {
         console.log('aqui ------------------------------------> Password not modified, skipping hash update.');
         next();
         return;
     }
-    console.log('Password modified, updating hash.');
+
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();

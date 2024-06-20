@@ -1,49 +1,71 @@
 <main class="mainProfile">
     <h2 class="titulo">Perfil del Usuario</h2>
-        <div class="userProfile">
-            <form class="formProfile" action="" method="post">
-                <div class="formProfileInput">
-                    <div class="labelForm">
-                        <label for="first_name">Nombre:</label>
-                        <input type="text" id="first_name" name="first_name" value="{{userDTO.firstName}}" readonly>
-                    </div>
-                    <div class="labelForm">
-                        <label for="last_name">Apellido:</label>
-                        <input type="text" id="last_name" name="last_name" value="{{userDTO.lastName}}" readonly>
-                    </div>
-                    <div class="labelForm">
-                        <label for="age">Edad:</label>
-                        <input type="number" id="age" name="age" min="1" value="{{userDTO.age}}" readonly>
-                    </div>
-                    <div class="labelForm">
-                        <label for="username">E-Mail:</label>
-                        <input type="email" id="username" name="email" value="{{userDTO.email}}" readonly>
-                    </div>
-                    <div class="labelForm">
-                        <label for="role">Rol:</label>
-                        <input type="text" id="role" name="role" value="{{userDTO.role}}" readonly>
-                    </div>
+    <div class="userProfile">
+        <form class="formProfile" action="" method="post">
+            <div class="formProfileInput">
+                <div class="labelForm">
+                    <label for="first_name">Nombre:</label>
+                    <input type="text" id="first_name" name="first_name" value="{{userDTO.firstName}}" readonly>
                 </div>
-                <div class="formProfileBtn">
-                    <button class="btn-modify" type="button">Editar Password</button>
+                <div class="labelForm">
+                    <label for="last_name">Apellido:</label>
+                    <input type="text" id="last_name" name="last_name" value="{{userDTO.lastName}}" readonly>
                 </div>
-            </form>
-            <form action="/api/user/{{userDTO.id}}/profile-img" enctype="multipart/form-data" method="post" class="formImgProfile">
-                <label for="file-input">
-                    <span class="file-custom">Seleccionar Imagen</span>
-                    <input type="file" name="profile" id="file-input" style="display: none">
-                </label>
-                <button class="btn-accept" id="editData" type="file">Guardar Imagen</button>
-                {{!-- <input type="file" value="Imagen Perfil"> --}}
-            </form>
-            <div class="containerBtnCurrent">
-                <form action='/api/user/premium/{{userDTO.id}}/' method="post" class="formProfileBtn">
-                    <button class="btn-role">Cambiar Rol</button>
-                </form>
-                <form action="/api/sessions/logout" method="post" class="formProfileBtn">
-                    <button class="btn-delete" type="submit">Cerrar Sesion</button>
-                </form>
+                <div class="labelForm">
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" name="age" min="1" value="{{userDTO.age}}" readonly>
+                </div>
+                <div class="labelForm">
+                    <label for="username">E-Mail:</label>
+                    <input type="email" id="username" name="email" value="{{userDTO.email}}" readonly>
+                </div>
+                <div class="labelForm">
+                    <label for="role">Rol:</label>
+                    <input type="text" id="role" name="role" value="{{userDTO.role}}" readonly>
+                </div>
             </div>
+            <div class="formProfileBtn">
+                <button class="btn-modify" type="button">Editar Password</button>
+            </div>
+        </form>
+        <form action="/api/user/{{userDTO.id}}/profile-img" enctype="multipart/form-data" method="post"
+            class="formImgProfile">
+            <label for="file-input">
+                <span class="file-custom">Seleccionar Imagen</span>
+                <input type="file" name="profile" id="file-input" style="display: none">
+            </label>
+            <button class="btn-accept" id="editData" type="file">Guardar Imagen</button>
+            {{!-- <input type="file" value="Imagen Perfil"> --}}
+        </form>
+        <div class="containerBtnCurrent">
+            <form action='/api/user/premium/{{userDTO.id}}/' method="post" class="formProfileBtn">
+                <button class="btn-role">Cambiar Rol</button>
+            </form>
+            <form action="/api/sessions/logout" method="post" class="formProfileBtn">
+                <button class="btn-delete" type="submit">Cerrar Sesion</button>
+            </form>
         </div>
         <img src="{{userDTO.profileImg}}" alt="imgProfile" class="imgProfile">
+    </div>
+    {{#if notAdmin}}
+    <p class="titleFormDocs">Cargue los Datos para ser PREMIUM</p>
+    <form action="/api/user/{{userDTO.id}}/documents" method="POST" enctype="multipart/form-data" class="formDocs">
+        <div class="formDocsLabel">
+            <label for="identificacion">Identificación:</label>
+            <input type="file" id="identificacion" name="identificacion">
+        </div>
+
+        <div class="formDocsLabel">
+            <label for="domicilio">Domicilio:</label>
+            <input type="file" id="domicilio" name="domicilio">
+        </div>
+
+        <div class="formDocsLabel">
+            <label for="cuenta">Cuenta:</label>
+            <input type="file" id="cuenta" name="cuenta">
+        </div>
+
+        <button type="submit">Guardar</button>
+    </form>
+    {{/if}}
 </main>

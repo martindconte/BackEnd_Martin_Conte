@@ -42,6 +42,7 @@ const getProductsRealTime = async (req, res, next) => {
         };
 
         const productsData = paginateData.payload.map(product => product.toObject())
+
         const pages = Array.from({ length: paginateData.totalPages }, (v, i) => i + 1);
         const baseURL = req.originalUrl
         res.render('realTimeProducts', {

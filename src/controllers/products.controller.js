@@ -1,3 +1,4 @@
+import ProductDTO from "../dao/DTO/product.dto.js";
 import CustomError from "../service/errors/CustomError.js";
 import ErrorType from "../service/errors/ErrorType.js";
 import { getProductErrorCode } from "../service/errors/info.js";
@@ -10,13 +11,15 @@ const getProducts = async (req, res) => {
 
         const filter = query ? {
             $and: [
-              { $or: [
-                { category: { $regex: new RegExp(query, 'i') } },
-                { description: { $regex: new RegExp(query, 'i') } },
-              ]},
-              { stock: { $gt: 0 } },
+                {
+                    $or: [
+                        { category: { $regex: new RegExp(query, 'i') } },
+                        { description: { $regex: new RegExp(query, 'i') } },
+                    ]
+                },
+                { stock: { $gt: 0 } },
             ],
-          } : {};
+        } : {};
 
         const options = {
             limit: isNaN(parseInt(limit)) ? 10 : parseInt(limit),
@@ -24,7 +27,7 @@ const getProducts = async (req, res) => {
             sort: { price: sort === 'asc' ? 1 : -1 }
         }
 
-        const products = await productService.paginate(filter, options) 
+        const products = await productService.paginate(filter, options)
 
         const queryParameters = {};
         if (query) queryParameters.query = query
@@ -57,9 +60,9 @@ const getProductById = async (req, res) => {
     const { pid } = req.params
 
     try {
-        const product = await productService.getById( pid )
+        const product = await productService.getById(pid)
         if (!product) return res.status(404).send({ error: `Product id: ${pid} not found` })
-            res.send(product)
+        res.send(product)
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: 'Internal server error' });
@@ -70,25 +73,34 @@ const addProducts = async (req, res, next) => {
 
     const { user } = req.session;
     const { code } = req.body
-    
-    if(user.role == 'PREMIUM') {
+    const product = new ProductDTO(req.body)
+    product.owner = user.username
+
+    if (req.files && req.files.length > 0) {
+        req.files.forEach(file => {
+            const pathFormated = file.path.split('public')[1].replace(/\\/g, '/')
+            product.thumbnails.push(pathFormated);
+        });
+    }
+
+    if (user.role == 'PREMIUM') {
         req.body.owner = user.username
     }
-    
+
     try {
         const isDuplicated = await productService.get({ code })
 
-        if( isDuplicated.length > 0 ) {
+        if (isDuplicated.length > 0) {
             return res.status(404).send(`The code ${req.body.code} is already registered!`)
         }
 
-        const newProduct = await productService.create(req.body)
+        const newProduct = await productService.create(product)
         res.send(newProduct)
     } catch (error) {
         console.log(error.message)
         const customError = new CustomError({
             name: `The code ${req.body.code} is already registered!`,
-            cause: getProductErrorCode( req.body.code ),
+            cause: getProductErrorCode(req.body.code),
             message: 'Error creating Product. Check Code...',
             code: ErrorType.INVALID_DATA
         })
@@ -123,13 +135,13 @@ const deleteProduct = async (req, res) => {
 
     try {
 
-        const product = await productService.getById( pid )
+        const product = await productService.getById(pid)
 
-        if( user.role == 'PREMIUM' && product.owner != user.username) {
+        if (user.role == 'PREMIUM' && product.owner != user.username) {
             throw new Error(`Can't delete item. The product belong to the user: ${product.owner}`)
         }
 
-        const result = await productService.deleteById( pid )
+        const result = await productService.deleteById(pid)
         result.deletedCount > 0
             ? res.status(200).send({ message: `Product id: ${req.params.pid} was successfully deleted` })
             : res.status(404).send({
