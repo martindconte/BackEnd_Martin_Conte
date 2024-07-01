@@ -2,6 +2,7 @@ import { cartService } from "../../service/index.service.js"
 
 const renderCartById = async ( req, res, next ) => {
 
+    console.log('aqui.........................');
     try {
 
         console.log(req.session.user);

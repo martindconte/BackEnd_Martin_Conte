@@ -85,7 +85,6 @@ socket.on('update-products', async () => {
     if (!response.ok) throw new Error(`Response: ${response.status}`)
 
     const data = await response.json()
-    console.log(data)
     cardContainer.innerHTML = ''
     data.payload.forEach(product => {
       const productItem = document.createElement('li');

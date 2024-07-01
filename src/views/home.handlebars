@@ -68,4 +68,15 @@
         <button type="submit">Guardar</button>
     </form>
     {{/if}}
+    {{#if userDTO.isAdmin}}
+    <div class="usersContainer">
+        <button id="btnUsersManager" class="btnUsers">Ver Usuarios Resgistrados</button>
+        <button id="btnInactiveUsersDelete" class="btnDeleteUsers">Eliminar Usuarios INACTIVOS</button>
+        <div id="tableUsers" class="tableUsers"></div>
+    </div>
+    {{/if}}
 </main>
+
+    {{#if userDTO.isAdmin}}
+<script src="/js/home.js"></script>
+    {{/if}}

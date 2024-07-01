@@ -2,7 +2,7 @@ import { userModel } from "../models/Users.js"
 
 export default class UserDao {
 
-    get = ( params ) => userModel.find( params )
+    // get = ( params ) => userModel.find( params )
     async get( params ) {
         return await userModel.find( params )
     }
@@ -17,6 +17,10 @@ export default class UserDao {
 
     async updateById( id, update, options ){
         return await userModel.findByIdAndUpdate( { _id: id }, update, options )
+    }
+
+    async deleteById( id ){
+        return await userModel.findByIdAndDelete({ _id: id })
     }
 
     async save( doc ){

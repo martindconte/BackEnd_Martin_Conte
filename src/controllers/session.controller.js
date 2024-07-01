@@ -27,8 +27,6 @@ const singIn = async (req, res) => {
 
         const [user] = await userService.get({ email })
 
-        console.log('user signIn ------------------------>', user);
-
         if (user && await user.checkPassword(password)) {
             const userLog = {
                 id: user._id.toString(),
@@ -54,11 +52,17 @@ const singIn = async (req, res) => {
 
 const logOut = async (req, res) => {
 
-    const { id } = req.session.user
+    const { role } = req.session.user
 
-    const user = await userService.getById({ id })
+    if( role !== 'ADMIN' ) {
 
-    await userService.updateById(user._id, { last_connection: new Date() });
+        const { id } = req.session.user
+
+        const user = await userService.getById({ id })
+    
+        await userService.updateById(user._id, { last_connection: new Date() });
+
+    }
         
     req.session.destroy((error) => {
         if (error) {

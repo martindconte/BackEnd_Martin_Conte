@@ -2,6 +2,7 @@ import CustomError from "../service/errors/CustomError.js"
 import ErrorType from "../service/errors/ErrorType.js"
 import { getUserEmailIsNotValid, getUserErrorInfo } from "../service/errors/info.js"
 import { cartService, userService } from "../service/index.service.js"
+import { MailingService } from "../service/mails/mail.service.js"
 
 export const createUser = async (req, res, next) => {
     const msg = []
@@ -117,6 +118,68 @@ export const profileImg = async ( req, res ) => {
     
         res.redirect('/current')
     } catch (error) {
+        res.status(500).send({ status: 'error', error: error.message })
+    }
+}
+
+export const getAllUsers = async ( req, res ) => {
+
+    try {
+
+        const users = await userService.get({})
+
+        res.send(users)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ status: 'error', error: error.message })
+    }
+
+}
+
+export const deleteUser = async ( req, res ) => {
+
+    const { uid } = req.params
+
+    try {
+        
+        const userDeleted = await userService.deleteById( uid )
+
+        res.send(userDeleted)
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ status: 'error', error: error.message })
+    }
+
+}
+
+export const deleteInactiveUsers = async ( req, res ) => {
+
+    try {
+
+        const deletedUsers = []
+        
+        const users = await userService.get({})
+
+        for (const user of users) {
+            console.log('user en el for ---------------------->', user);
+            const lastConnectionDate = new Date(user.last_connection)
+            const now = new Date()
+            const timeDifference = Math.abs(now - lastConnectionDate)
+            const minutesDifference = Math.floor(timeDifference / (1000 * 60))
+
+            // tdInactivo.textContent = minutesDifference > 30 ? 'Verdadero' : 'Falso'
+            if( minutesDifference > 30) {
+                const userDeleted = await userService.deleteById( user._id )
+                await MailingService.sendDeletedAccountMail( user )
+                deletedUsers.push(userDeleted)
+            }
+        }
+        
+        res.send(deletedUsers)
+    } catch (error) {
+        console.log(error);
         res.status(500).send({ status: 'error', error: error.message })
     }
 }
