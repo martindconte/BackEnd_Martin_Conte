@@ -3,6 +3,7 @@ import CustomError from "../service/errors/CustomError.js";
 import ErrorType from "../service/errors/ErrorType.js";
 import { getProductErrorCode } from "../service/errors/info.js";
 import { productService } from "../service/index.service.js";
+import { MailingService } from "../service/mails/mail.service.js";
 
 const getProducts = async (req, res) => {
 
@@ -142,13 +143,23 @@ const deleteProduct = async (req, res) => {
         }
 
         const result = await productService.deleteById(pid)
-        result.deletedCount > 0
-            ? res.status(200).send({ message: `Product id: ${req.params.pid} was successfully deleted` })
-            : res.status(404).send({
+        if (result.deletedCount > 0) {
+            if( product.owner && product.owner !== process.env.APP_ADMIN_EMAIL ) {
+                await MailingService.sendDeleteProduct(product)
+            }
+            res.status(200).send({ message: `Product id: ${req.params.pid} was successfully deleted` })
+        } else {
+            res.status(404).send({
                 error: {
                     message: `Product id: ${req.params.pid} not found!`
                 }
             })
+        }
+        // result.deletedCount > 0
+        //     ? (
+
+        //     )
+        //         : 
     } catch (error) {
         console.log(error)
         res.status(404).send({ error });

@@ -18,9 +18,10 @@ router.get('/change-password/:token', changePassword)
 router.get('/realtimeproducts', checkLogged, checkRole(['ADMIN', 'PREMIUM']), getProductsRealTime)
 router.get('/mockingproducts', checkLogged, checkRole('ADMIN'), renderMockingProducts)
 
-router.use('/chat', checkLogged, checkRole('user'), chatRouter)
+router.use('/chat', checkLogged, checkRole(['user','PREMIUM']), chatRouter)
 router.use('/products', checkLogged, productsViewsRouter)
 router.use('/cart/:cid', checkLogged, checkRole(['user','PREMIUM']) ,renderCartById)
+router.get('*', ( req, res ) => res.redirect('/products'))
 
 router.get('/', ( req, res ) => {
 

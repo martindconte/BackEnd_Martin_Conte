@@ -42,6 +42,21 @@ class MailingService {
         })
     }
 
+    static async sendDeleteProduct ( product ) {
+        await transport.sendMail({
+            from: `e-commerce services <${mailing.auth.user}>`,
+            to: product.owner,
+            subject: `Deleted Product`,
+            html: `
+                <div>
+                    <h1 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center;">Your Product has been deleted</h1>
+                    <h2>Hello, your product ${product.title} ${product.description} has been deleted</h2>
+                    <p style="color: red; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">If you have never registered on the site ignore this email</p>
+                </div>
+            `
+        })
+    }
+
 
 }
 

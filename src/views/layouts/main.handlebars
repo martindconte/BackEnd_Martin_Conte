@@ -21,7 +21,11 @@
             <h1><a href="/products">E-COMMERCE</a></h1>
             <li><a href="/products">Productos</a></li>
             <li><a href="/chat">Chat</a></li>
+
+            {{#if adminPProducts}}
             <li><a href="/realtimeproducts">Admin Productos</a></li>
+
+            {{/if}}
             <ul class="container">
                 <li>
                     <a class="info" href="/current">
@@ -32,7 +36,8 @@
                         </div>
                     </a>
                 </li>
-                <li><a href="/cart/{{userDTO.cartId}}"><span class="material-symbols-outlined">shopping_cart</span></a></li>
+                <li><a href="/cart/{{userDTO.cartId}}"><span class="material-symbols-outlined">shopping_cart</span></a>
+                </li>
                 <li><span class="material-symbols-outlined">location_on</span></li>
             </ul>
         </nav>

@@ -79,29 +79,36 @@ formAddProduct.addEventListener('submit', async (e) => {
 
 socket.on('update-products', async () => {
 
-  try {
-    const response = await fetch('api/products')
+  window.location.reload()
 
-    if (!response.ok) throw new Error(`Response: ${response.status}`)
+  // try {
+  //   const response = await fetch('api/products')
 
-    const data = await response.json()
-    cardContainer.innerHTML = ''
-    data.payload.forEach(product => {
-      const productItem = document.createElement('li');
-      productItem.classList.add('card');
-      productItem.innerHTML = `
-          <h3>${product.title}</h3>
-          <p>${product.description}</p>
-          <p>Precio: $${product.price}</p>
-          <div class="btn-container">
-              <button class="btn-accept" data-id="btn-buy" id="buy${product._id}">COMPRAR</button>
-              <button class="btn-delete" data-id="btn-delete" id="delete${product._id}">ELIMINAR</button>
-              <button class="btn-cart">AGREGAR AL CARRITO</button>
-          </div>
-      `;
-      cardContainer.appendChild(productItem);
-    })
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+  //   console.log(response);
+
+  //   // if (!response.ok) throw new Error(`Response: ${response.status}`)
+
+  //   const data = await response.json()
+  //   console.log('aqui..........................................');
+  //   console.log(data);
+  //   cardContainer.innerHTML = ''
+  //   data.payload.forEach(product => {
+  //     const productItem = document.createElement('li');
+  //     productItem.classList.add('card');
+  //     productItem.innerHTML = `
+  //         <h3>${product.title}</h3>
+  //         <p>${product.description}</p>
+  //         <p>Precio: $${product.price}</p>
+  //         <div class="btn-container">
+  //             <button class="btn-accept" data-id="btn-buy" id="buy${product._id}">COMPRAR</button>
+  //             <button class="btn-delete" data-id="btn-delete" id="delete${product._id}">ELIMINAR</button>
+  //             <button class="btn-cart">AGREGAR AL CARRITO</button>
+  //         </div>
+  //     `;
+  //     cardContainer.appendChild(productItem);
+  //   })
+  // } catch (error) {
+  //   console.log(error);
+  //   // res.status(500).send(error.message);
+  // }
 })

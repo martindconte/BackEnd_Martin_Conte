@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import dotenv from 'dotenv'
-import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express'
 import productsRouter from './router/products.routes.js';
 import cartRouter from './router/cart.routes.js'
@@ -119,4 +118,4 @@ app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)
 app.use('/api/user', userRouter)
 
-// app.use(errorHandling)
+app.use(errorHandling)

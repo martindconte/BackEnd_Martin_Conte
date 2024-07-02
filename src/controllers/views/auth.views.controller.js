@@ -38,21 +38,25 @@ export const userDataLog = async (req, res) => {
             const userAdmin = {
                 email: user.username,
                 role: 'admin',
-                isAdmin: true
+                isAdmin: true,
+                adminPProducts: true
             }
             res.render('home', {
                 pageName: 'User Data',
                 userDTO: userAdmin,
+                adminPProducts: true
             })
         } else {
             const [ userLog ] = await userService.get({ email: user.username })
             const userDTO = new  UserDTO(userLog)
+            console.log('logueado.............................', userDTO);
 
 
             res.render('home', {
                 pageName: 'User Data',
                 userDTO: { ...userDTO,  },
-                notAdmin: true
+                notAdmin: true,
+                adminPProducts: userDTO.role === 'PREMIUM' ? true : false
             })
         }
     } catch (error) {

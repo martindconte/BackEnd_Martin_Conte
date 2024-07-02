@@ -53,11 +53,12 @@ export const changeRole = async (req, res) => {
 
     const { user } = req.session
 
+    console.log(user);
+
     const requiredDocs = [ 'identificacion', 'domicilio', 'estado_cuenta' ]
 
     try {
         const userData = await userService.getById({ _id: user.id })
-        console.log('userData ------------->', userData);
 
         if( userData.role === 'user' ) {
             if( !userData.documents.some( document => document.name.includes('identificacion') ) ) throw new Error('Missing identificacion Document')
@@ -84,9 +85,14 @@ export const changeRole = async (req, res) => {
 export const uploadDocuments = async (req, res) => {
 
     const { uid } = req.params
+
+    console.log('uid', uid);
+    console.log('req.files', req.files);
     
     try {
-        const user = await userService.getById({ id: uid })
+        const user = await userService.getById({ _id: uid })
+
+        console.log('user ---------------------->', user);
 
         const documentsUpdate = [];
 

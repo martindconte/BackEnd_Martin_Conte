@@ -56,7 +56,9 @@ export const renderProducts = async (req, res) => {
             pages,
             queryParameters,
             baseURL,
-            userDTO: req.session.user
+            userDTO: req.session.user,
+            notAdmin: true,
+            adminPProducts: req.session.user.role === 'PREMIUM' ? true : req.session.user.role === 'ADMIN' ? true: false
         })
 
     } catch (error) {

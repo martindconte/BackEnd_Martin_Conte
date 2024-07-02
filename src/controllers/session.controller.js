@@ -19,6 +19,8 @@ const singIn = async (req, res) => {
             const userAdmin = {
                 username: email,
                 role: 'ADMIN',
+                isAdmin: true,
+                adminPProducts: true
             }
             req.session.user = userAdmin
             await req.session.save()
@@ -33,7 +35,9 @@ const singIn = async (req, res) => {
                 username: email,
                 role: user.role,
                 cartId: user.cart.toString(),
-                profileImg: 'src/public' + user.profile_image
+                profileImg: 'src/public' + user.profile_image,
+                notAdmin: true,
+                adminPProducts: user.role === 'PREMIUM' ? true : false
             }
             
             await userService.updateById(user._id, { last_connection: new Date() });

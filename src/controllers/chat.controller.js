@@ -12,7 +12,9 @@ const getChat = async (req, res, next) => {
             pageName: 'Chat',
             layout: 'main',
             messages,
-            userDTO: req.session.user
+            userDTO: req.session.user,
+            notAdmin: true,
+            adminPProducts: req.session.user.role === 'PREMIUM' ? true : false
         })
 
     } catch (error) {
