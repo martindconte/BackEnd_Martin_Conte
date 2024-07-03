@@ -131,7 +131,6 @@ const updatedProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
 
     const { pid } = req.params
-    console.log('el pid es ---------------->', pid);
     const { user } = req.session
 
     try {
@@ -155,11 +154,7 @@ const deleteProduct = async (req, res) => {
                 }
             })
         }
-        // result.deletedCount > 0
-        //     ? (
 
-        //     )
-        //         : 
     } catch (error) {
         console.log(error)
         res.status(404).send({ error });

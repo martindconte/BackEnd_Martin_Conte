@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 // not accept delete cart
                 document.getElementById(`${e.target.dataset.delete}Modalnot`).onclick = () => {
-                    console.log('Dejando...')
                     divModal.remove();
                 };
             }

@@ -1,5 +1,3 @@
-// import cartService from "../dao/carts.models.js"
-// import productService from "../dao/products.models.js"
 import { cartService, productService, ticketService } from '../service/index.service.js'
 
 const getAllCarts = async (req, res) => {
@@ -69,7 +67,6 @@ const addProductsToCart = async (req, res) => {
 }
 
 const updateProductsInCart = async (req, res) => {
-    console.log('recibe via body todo el arreglo que productos que queres actualizar... reemplaza al actual arreglo de productos. el nuevo arreglo llega en el body')
 
     const { cid } = req.params
 
@@ -96,9 +93,8 @@ const updateProductsInCart = async (req, res) => {
 }
 
 const updateQuantity = async (req, res) => {
-    console.log('Modificando la cantidad de Productos que hay en un carrito... el body sera la cantidad de productos')
+
     const { quantity: newQuantity } = req.body
-    console.log(newQuantity);
 
     if( newQuantity < 1 ) {
         return res.status(404).send({ error: 'The quantity cannot be less than zero' })

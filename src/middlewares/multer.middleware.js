@@ -16,8 +16,6 @@ const storage = multer.diskStorage({
           destinationFolder = '/products'
         }
 
-        console.log('destination ------------------------->', destinationFolder);
-
       cb(null, `${__dirname}/../src/public/files/${destinationFolder}`)
     },
     filename: function (req, file, cb) {

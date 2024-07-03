@@ -2,7 +2,6 @@ import { userModel } from "../models/Users.js"
 
 export default class UserDao {
 
-    // get = ( params ) => userModel.find( params )
     async get( params ) {
         return await userModel.find( params )
     }

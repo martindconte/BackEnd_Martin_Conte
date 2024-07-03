@@ -2,7 +2,6 @@ import ErrorType from "../service/errors/ErrorType.js";
 
 const errorHandling = (error, req, res, next)=>{
 
-    console.log('error ------------> ', error.code)
     switch (error.code) {
         case ErrorType.ROUTING_ERROR:
             req.logger.error(error.name)

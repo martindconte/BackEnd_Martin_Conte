@@ -49,8 +49,6 @@ export const userDataLog = async (req, res) => {
         } else {
             const [ userLog ] = await userService.get({ email: user.username })
             const userDTO = new  UserDTO(userLog)
-            console.log('logueado.............................', userDTO);
-
 
             res.render('home', {
                 pageName: 'User Data',

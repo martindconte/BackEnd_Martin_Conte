@@ -85,14 +85,9 @@ export const changeRole = async (req, res) => {
 export const uploadDocuments = async (req, res) => {
 
     const { uid } = req.params
-
-    console.log('uid', uid);
-    console.log('req.files', req.files);
     
     try {
         const user = await userService.getById({ _id: uid })
-
-        console.log('user ---------------------->', user);
 
         const documentsUpdate = [];
 
@@ -169,13 +164,12 @@ export const deleteInactiveUsers = async ( req, res ) => {
         const users = await userService.get({})
 
         for (const user of users) {
-            console.log('user en el for ---------------------->', user);
+
             const lastConnectionDate = new Date(user.last_connection)
             const now = new Date()
             const timeDifference = Math.abs(now - lastConnectionDate)
             const minutesDifference = Math.floor(timeDifference / (1000 * 60))
 
-            // tdInactivo.textContent = minutesDifference > 30 ? 'Verdadero' : 'Falso'
             if( minutesDifference > 30) {
                 const userDeleted = await userService.deleteById( user._id )
                 await MailingService.sendDeletedAccountMail( user )

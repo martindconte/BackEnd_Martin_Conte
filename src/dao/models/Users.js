@@ -60,7 +60,6 @@ const userSchema = new mongoose.Schema({
 userSchema.pre('save', async function(next) {
 
     if (!this.isModified('password')) {
-        console.log('aqui ------------------------------------> Password not modified, skipping hash update.');
         next();
         return;
     }

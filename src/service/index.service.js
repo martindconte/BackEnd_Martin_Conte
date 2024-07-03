@@ -9,8 +9,6 @@ import ProductsRepository from "../repositories/Products.repository.js";
 import TicketRepository from "../repositories/Ticket.respository.js";
 import UserRepository from "../repositories/User.repository.js";
 
-// export const subrackService = new SubrackRepository( new Subrack )
-
 export const productService = new ProductsRepository( new ProductsDao )
 export const cartService = new CartRepository( new CartsDao )
 export const chatService = new ChatRepository( new ChatDao )
