@@ -5,10 +5,13 @@ const tableUsers  = document.getElementById('tableUsers')
 btnUsersManager.addEventListener('click', async () => {
     try {
         const response = await fetch('/api/user')
+
         if (!response.ok) {
             throw new Error('Error en la solicitud')
         }
         const users = await response.json()
+
+        console.log(users);
 
         if( users.length > 0 ) {
 

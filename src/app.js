@@ -111,11 +111,11 @@ app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
 // authentication routes
 app.use('/api/sessions', sessionRouter)
-app.use('/', ioMiddleware, viewsRouter)
 app.use('/loggerTest', loggerTest)
 // Routing
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartRouter)
 app.use('/api/user', userRouter)
+app.use('/', ioMiddleware, viewsRouter)
 
 app.use(errorHandling)

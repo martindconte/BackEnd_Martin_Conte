@@ -23,11 +23,11 @@ router.use('/products', checkLogged, productsViewsRouter)
 router.use('/cart/:cid', checkLogged, checkRole(['user','PREMIUM']) ,renderCartById)
 router.get('*', ( req, res ) => res.redirect('/products'))
 
-router.get('/', ( req, res ) => {
+// router.get('/', ( req, res ) => {
 
-    // todo crear una pagina de inicio. Aun no solicitadas
-    res.redirect('/products')
-})
+//     // todo crear una pagina de inicio. Aun no solicitadas
+//     res.redirect('/products')
+// })
 
 
 export default router

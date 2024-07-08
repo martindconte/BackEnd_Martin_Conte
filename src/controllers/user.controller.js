@@ -125,9 +125,13 @@ export const profileImg = async ( req, res ) => {
 
 export const getAllUsers = async ( req, res ) => {
 
+    console.log('aqui..........................');
+
     try {
 
         const users = await userService.get({})
+
+        console.log(users);
 
         res.send(users)
         
